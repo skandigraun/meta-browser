@@ -1,3 +1,17 @@
+Note from me
+============
+
+This is an updated version of meta-firefox layer, with a newer version of Firefox.
+
+It is based on the meta-browser layer. It has been tested with Yocto Mickledore only, mostly due to lack of laptop power. I would expect it to work with previous version also, if meta-rust is pulled in.
+Feel free to test, and report back the results. 
+
+The layer build successfully with aarch64-poky-linux-gnu arch (tested with PinePhone). Tests with other architectures would be welcome.
+
+Plan to upstream this in the very near future. If you want to help in, feel free to solve an issue or open a new one.
+
+The PACKAGECFG part of this readme below could be outdated at this time.
+
 OpenEmbedded/Yocto BSP layer for Firefox Browser
 ================================================
 
@@ -18,14 +32,6 @@ This layer depends on:
 * URI: git://github.com/kraj/meta-clang
   - branch: master
   - revision: HEAD
-
-* URI: git://github.com/meta-rust/meta-rust
-  - branch: master
-  - revision: HEAD
-
-* python2.7 and python on host for HOSTTOOLS
-  - e.g. on newer ubuntu which doesn't install python2 at all by default
-    you need to install python-is-python2 (which will pull python2-minimal/python2.7-minimal)
 
 Contributing
 ------------
