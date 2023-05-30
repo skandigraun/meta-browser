@@ -1,0 +1,63 @@
+This patch does the following:
+1 - ./build/RunCbindgen.py - cargo is trying to update Cargo.lock, which changes due to
+the offline crates this layer is using. It can't be updated with offline flag.
+
+2 - ./build/moz.configure/rust.configure - try to find the targets supported by Yocto,
+and make sure that in case it is compiled for target, add the relevant rustflags (cross-linker, etc)
+
+--- ./build/RunCbindgen.py	2023-05-22 06:22:20.074747844 +0200
++++ ./build/RunCbindgen.py	2023-05-22 06:23:18.291032448 +0200
+@@ -45,7 +45,7 @@
+         [
+             buildconfig.substs["CARGO"],
+             "metadata",
+-            "--frozen",
++            "--offline",
+             "--all-features",
+             "--format-version",
+             "1",
+--- ./build/moz.configure/rust.configure	2023-05-26 07:03:49.439953144 +0200
++++ ./build/moz.configure/rust.configure	2023-05-26 07:03:36.623890490 +0200
+@@ -259,10 +260,12 @@
+ 
+ @depends(rustc, when=rust_compiler)
+ @imports(_from="__builtin__", _import="ValueError")
++@imports("os")
+ def rust_supported_targets(rustc):
+-    out = check_cmd_output(rustc, "--print", "target-list").splitlines()
++    out = check_cmd_output("ls", "-1", os.environ["RUST_TARGET_PATH"]).splitlines()
+     data = {}
+     for t in out:
++        t = t.split(".")[0]
+         try:
+             info = split_triplet(t, allow_wasi=True)
+         except ValueError:
+@@ -423,7 +426,7 @@
+ @imports(_from="tempfile", _import="mkstemp")
+ @imports(_from="textwrap", _import="dedent")
+ @imports(_from="mozbuild.configure.util", _import="LineIO")
+-def assert_rust_compile(host_or_target, rustc_target, rustc):
++def assert_rust_compile(host_or_target, rustc_target, rustc, is_target = False):
+     # Check to see whether our rustc has a reasonably functional stdlib
+     # for our chosen target.
+     target_arg = "--target=" + rustc_target
+@@ -449,6 +452,9 @@
+             in_path,
+         ]
+ 
++        if is_target:
++            cmd.extend(os.environ["RUSTFLAGS"].split())
++
+         def failed():
+             die(
+                 dedent(
+@@ -525,7 +531,7 @@
+     rustc_target = detect_rustc_target(
+         target, compiler_info, arm_target, rust_supported_targets
+     )
+-    assert_rust_compile(target, rustc_target, rustc)
++    assert_rust_compile(target, rustc_target, rustc, True)
+     return rustc_target
+ 
+ 
+k
