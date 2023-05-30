@@ -7,8 +7,8 @@ inherit cargo
 
 # how to get cbindgen could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/cbindgen/0.23.0"
-SRC_URI += "git://github.com/eqrion/cbindgen.git;protocol=https;nobranch=1"
-SRCREV = "c732069b2e8b899149a54c26539b843237b85d74"
+SRC_URI += "git://github.com/eqrion/cbindgen.git;protocol=https;branch=master"
+SRCREV = "52a65e5be3d8c6a2648fbe3bc6a9001a96f0756c"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
 
@@ -62,6 +62,13 @@ SRC_URI += " \
     crate://crates.io/winapi/0.3.9 \
 "
 
+
+
+# FIXME: update generateme with the real MD5 of the license file
+LIC_FILES_CHKSUM = " \
+    file://LICENSE;md5=9741c346eef56131163e13b9db1241b3 \
+"
+
 SRC_URI[atty-0.2.14.sha256sum] = "d9b39be18770d11421cdb1b9947a45dd3f37e93092cbf377614828a319d5fee8"
 SRC_URI[autocfg-1.1.0.sha256sum] = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 SRC_URI[bitflags-1.3.2.sha256sum] = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
@@ -106,10 +113,6 @@ SRC_URI[winapi-util-0.1.5.sha256sum] = "70ec6ce85bb158151cae5e5c87f95a8e97d2c0c4
 SRC_URI[winapi-x86_64-pc-windows-gnu-0.4.0.sha256sum] = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
 SRC_URI[winapi-0.3.9.sha256sum] = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
 
-# FIXME: update generateme with the real MD5 of the license file
-LIC_FILES_CHKSUM = " \
-    file://LICENSE;md5=9741c346eef56131163e13b9db1241b3 \
-"
 
 SUMMARY = "A tool for generating C bindings to Rust code."
 HOMEPAGE = "https://github.com/eqrion/cbindgen/"
