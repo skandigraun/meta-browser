@@ -1,0 +1,12 @@
+--- ./build/moz.configure/rust.configure	2022-11-27 19:52:44.356669644 +0100
++++ ./build/moz.configure/rust.configure	2022-11-27 19:53:28.256799640 +0100
+@@ -84,7 +84,8 @@
+                 # installed, but go ahead and unwrap anyway: the user might
+                 # have only certain versions, beta, or nightly installed, and
+                 # we'll catch invalid versions later.
+-                prog = from_rustup_which()
++                # prog = from_rustup_which()
++                pass
+ 
+         return normalize_path(prog)
+ 
