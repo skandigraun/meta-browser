@@ -42,7 +42,7 @@ python do_install() {
 }
 
 do_install_xpi_pack() {
-    install -D -m 0644 ${LANGUAGE}.xpi ${D}${datadir}/mozilla/extensions/\{ec8030f7-c20a-464f-9b0e-13a3a9e97384\}/extensions/${EXTENSION}.xpi
+    install -D -m 0644 ${LANGUAGE}.xpi ${D}${datadir}/mozilla/extensions/\{ec8030f7-c20a-464f-9b0e-13a3a9e97384\}/${EXTENSION}.xpi
 }
 
-FILES:${PN} += "${libdir}/firefox"
+FILES:${PN} += "${datadir}/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
