@@ -42,18 +42,10 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            git://github.com/mozilla/audioipc;protocol=https;branch=master;name=audioipc;destsuffix=audioipc \
            git://github.com/mozilla/mp4parse-rust;protocol=https;branch=master;name=mp4parse;destsuffix=mp4parse \
            git://github.com/servo/rust-cssparser;protocol=https;branch=master;name=cssparser;destsuffix=cssparser \
-           git://github.com/WebAssembly/wabt.git;protocol=https;branch=main;name=wabt;destsuffix=wabt \
            "
 
 
-
-do_compile:prepend(){
-    head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
-    mv "${WORKDIR}/cargo_home/config_tmp" "${WORKDIR}/cargo_home/config"
-}
-
-
-SRC_URI[sha256sum] = "c4f86ecbb3f418cf8f0000a3824c0decb6ef2253f468cf6e005c5fd1de33da4d"
+SRC_URI[sha256sum] = "f132b702836311b6cc40873b69df3ce208d035dbc8ce390c390eebd63d27c7a3"
 
 SRCREV_chardetng = "3484d3e3ebdc8931493aa5df4d7ee9360a90e76b"
 SRCREV_chardetng_c = "ed8a4c6f900a90d4dbc1d64b856e61490a1c3570"
@@ -74,7 +66,6 @@ SRCREV_wgpu = "73b4257b17cc62ecc8df6d6aa3730bd9c6cba4b9"
 SRCREV_audioipc = "0b51291d2483a17dce3e300c7784b369e02bee73"
 SRCREV_mp4parse = "2b572e83608a3d0867b935e076f45d9fe248069d"
 SRCREV_cssparser = "45bc47e2bcb846f1efb5aea156be5fe7d18624bf"
-SRCREV_wabt = "e82833182a3362b26a2cbbfce15c279fbadd048c"
 
 
 S = "${WORKDIR}/firefox-${MOZ_APP_BASE_VERSION}"
@@ -119,6 +110,11 @@ SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbit-multiple-compositors',
            'file://prefs/single-compositor.js \
             file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
 	   ', '', d)}"
+
+do_compile:prepend(){
+    head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
+    mv "${WORKDIR}/cargo_home/config_tmp" "${WORKDIR}/cargo_home/config"
+}
 
 do_install:append() {
     install -d ${D}${datadir}/applications
