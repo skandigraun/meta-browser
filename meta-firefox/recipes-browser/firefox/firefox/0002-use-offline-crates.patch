@@ -1,8 +1,18 @@
-Compile time Cargo has no network access. Use local version of the crates.
+From b12d969042f8cbd50b7039f56150058892a088fa Mon Sep 17 00:00:00 2001
+From: skandigraun <skandigraun@gmail.com>
+Date: Tue, 30 May 2023 22:17:51 +0200
+Subject: [PATCH] Compile time Cargo has no network access. Use local version
+ of the crates.
 
---- ./Cargo.toml	2023-05-25 18:16:31.631951015 +0200
-+++ ./Cargo.toml	2023-05-25 18:16:56.988074975 +0200
-@@ -153,34 +153,59 @@
+---
+ Cargo.toml | 67 +++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 46 insertions(+), 21 deletions(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 52ca31640b..435c821d9b 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -153,34 +153,59 @@ moz_asserts = { path = "mozglue/static/rust/moz_asserts" }
  rure = { path = "third_party/rust/rure" }
  
  # Other overrides
