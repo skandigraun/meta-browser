@@ -1,3 +1,8 @@
+From 7bc1dcc3e871f22b0e254f835eb41fec644c9641 Mon Sep 17 00:00:00 2001
+From: skandigraun <skandigraun@gmail.com>
+Date: Tue, 30 May 2023 22:17:51 +0200
+Subject: [PATCH] update firefox
+
 This patch does the following:
 1 - ./build/RunCbindgen.py - cargo is trying to update Cargo.lock, which changes due to
 the offline crates this layer is using. It can't be updated with offline flag.
@@ -5,9 +10,16 @@ the offline crates this layer is using. It can't be updated with offline flag.
 2 - ./build/moz.configure/rust.configure - try to find the targets supported by Yocto,
 and make sure that in case it is compiled for target, add the relevant rustflags (cross-linker, etc)
 
---- ./build/RunCbindgen.py	2023-05-22 06:22:20.074747844 +0200
-+++ ./build/RunCbindgen.py	2023-05-22 06:23:18.291032448 +0200
-@@ -45,7 +45,7 @@
+---
+ build/RunCbindgen.py               |  2 +-
+ build/moz.configure/rust.configure | 11 ++++++++---
+ 2 files changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/build/RunCbindgen.py b/build/RunCbindgen.py
+index f797cad385..dc118a1dce 100644
+--- a/build/RunCbindgen.py
++++ b/build/RunCbindgen.py
+@@ -45,7 +45,7 @@ def generate_metadata(output, cargo_config):
          [
              buildconfig.substs["CARGO"],
              "metadata",
@@ -16,9 +28,11 @@ and make sure that in case it is compiled for target, add the relevant rustflags
              "--all-features",
              "--format-version",
              "1",
---- ./build/moz.configure/rust.configure	2023-05-26 07:03:49.439953144 +0200
-+++ ./build/moz.configure/rust.configure	2023-05-26 07:03:36.623890490 +0200
-@@ -259,10 +260,12 @@
+diff --git a/build/moz.configure/rust.configure b/build/moz.configure/rust.configure
+index 4f15da572b..e5848e81c8 100644
+--- a/build/moz.configure/rust.configure
++++ b/build/moz.configure/rust.configure
+@@ -260,10 +260,12 @@ def rust_compiler(rustc_info, cargo_info, target):
  
  @depends(rustc, when=rust_compiler)
  @imports(_from="__builtin__", _import="ValueError")
@@ -32,7 +46,7 @@ and make sure that in case it is compiled for target, add the relevant rustflags
          try:
              info = split_triplet(t, allow_wasi=True)
          except ValueError:
-@@ -423,7 +426,7 @@
+@@ -424,7 +426,7 @@ def detect_rustc_target(
  @imports(_from="tempfile", _import="mkstemp")
  @imports(_from="textwrap", _import="dedent")
  @imports(_from="mozbuild.configure.util", _import="LineIO")
@@ -41,7 +55,7 @@ and make sure that in case it is compiled for target, add the relevant rustflags
      # Check to see whether our rustc has a reasonably functional stdlib
      # for our chosen target.
      target_arg = "--target=" + rustc_target
-@@ -449,6 +452,9 @@
+@@ -450,6 +452,9 @@ def assert_rust_compile(host_or_target, rustc_target, rustc):
              in_path,
          ]
  
@@ -51,7 +65,7 @@ and make sure that in case it is compiled for target, add the relevant rustflags
          def failed():
              die(
                  dedent(
-@@ -525,7 +531,7 @@
+@@ -526,7 +531,7 @@ def rust_target_triple(
      rustc_target = detect_rustc_target(
          target, compiler_info, arm_target, rust_supported_targets
      )
@@ -60,4 +74,3 @@ and make sure that in case it is compiled for target, add the relevant rustflags
      return rustc_target
  
  
-k
