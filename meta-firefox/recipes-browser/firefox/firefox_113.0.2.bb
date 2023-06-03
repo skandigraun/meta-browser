@@ -23,6 +23,28 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://0001-trust-yocto-rust-binary.patch \
            file://0002-use-offline-crates.patch \
            file://0003-configure-use-rustflags-and-stay-offline.patch \
+           file://debian-hacks/Add-a-2-minutes-timeout-on-xpcshell-tests.patch \
+           file://debian-hacks/Add-another-preferences-directory-for-applications-p.patch \
+           file://debian-hacks/Add-missing-webrtc-directory-for-ppc64el-bz-1775202.patch \
+           file://debian-hacks/Allow-to-override-rust-LTO-flag.patch \
+           file://debian-hacks/Avoid-using-vmrs-vmsr-on-armel.patch \
+           file://debian-hacks/Avoid-wrong-sessionstore-data-to-keep-windows-out-of.patch \
+           file://debian-hacks/Don-t-build-image-gtests.patch \
+           file://debian-hacks/Fix-math_private.h-for-i386-FTBFS.patch \
+           file://debian-hacks/Remove-workaround-for-old-libstdc-problem-which-now-.patch \
+           file://debian-hacks/Use-build-id-as-langpack-version-for-reproducibility.patch \
+           file://debian-hacks/Use-the-Mozilla-Location-Service-key-when-the-Google.patch \
+           file://fixes/Allow-.js-preference-files-to-set-locked-prefs-with-.patch \
+           file://porting/Add-xptcall-support-for-SH4-processors.patch \
+           file://porting/NSS-Fix-FTBFS-on-Hurd-because-of-MAXPATHLEN.patch \
+           file://porting/Use-compiler-macros-to-detect-big-endian.patch \
+           file://porting/Use-NEON_FLAGS-instead-of-VPX_ASFLAGS-for-libaom-neo.patch \
+           file://porting/Work-around-another-GCC-ICE-on-arm.patch \
+           file://wayland/egl/bug1571603-Disable-eglQueryString-nullptr-EGL_EXTENSIONS.patch \
+           file://wayland/egl/0001-Mark-GLFeature-framebuffer_multisample-as-unsupporte.patch \
+           file://wayland/egl/0001-GLLibraryLoader-Use-given-symbol-lookup-function-fir.patch \
+           file://prefs/Don-t-auto-disable-extensions-in-system-directories.patch \
+           file://prefs/Set-DPI-to-system-settings.patch \
            git://github.com/hsivonen/chardetng.git;protocol=https;branch=tldquery;name=chardetng;destsuffix=chardetng \
            git://github.com/hsivonen/chardetng_c.git;protocol=https;branch=tldquery;name=chardetng_c;destsuffix=chardetng_c \
            git://github.com/chris-zen/coremidi.git;protocol=https;branch=master;name=coremidi;destsuffix=coremidi \
