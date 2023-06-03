@@ -1,0 +1,64 @@
+From: Mike Hommey <mh@glandium.org>
+Date: Wed, 15 Feb 2023 08:44:19 +0900
+Subject: Use compiler macros to detect big endian
+
+Both clang and GCC define endianness as builtin defines.
+---
+ third_party/wasm2c/src/common.h                  | 8 ++++++++
+ third_party/wasm2c/src/prebuilt/wasm2c.include.c | 8 ++++++++
+ third_party/wasm2c/src/wasm2c.c.tmpl             | 8 ++++++++
+ 3 files changed, 24 insertions(+)
+
+diff --git a/third_party/wasm2c/src/common.h b/third_party/wasm2c/src/common.h
+index de5e44a..c4eb760 100644
+--- a/third_party/wasm2c/src/common.h
++++ b/third_party/wasm2c/src/common.h
+@@ -103,6 +103,14 @@
+ #define PRIaddress PRIu64
+ #define PRIoffset PRIzx
+ 
++#ifndef WABT_BIG_ENDIAN
++#  if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
++#    define WABT_BIG_ENDIAN 1
++#  elif __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
++#    define WABT_BIG_ENDIAN 0
++#  endif
++#endif
++
+ namespace wabt {
+ #if WABT_BIG_ENDIAN
+   inline void MemcpyEndianAware(void *dst, const void *src, size_t dsize, size_t ssize, size_t doff, size_t soff, size_t len) {
+--- a/third_party/wasm2c/src/prebuilt/wasm2c.include.c	2023-06-03 19:23:39.251650535 +0200
++++ b/third_party/wasm2c/src/prebuilt/wasm2c.include.c	2023-06-03 19:25:24.516165147 +0200
+@@ -113,6 +113,14 @@
+ "#define wasm_asm(X)\n"
+ "#endif\n"
+ "\n"
++"#ifndef WABT_BIG_ENDIAN\n"
++"#  if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__\n"
++"#    define WABT_BIG_ENDIAN 1\n"
++"#  elif __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__\n"
++"#    define WABT_BIG_ENDIAN 0\n"
++"#  endif\n"
++"#endif\n"
++"\n"
+ "#if WABT_BIG_ENDIAN\n"
+ "static inline void load_data(void *dest, const void *src, size_t n) {\n"
+ "  size_t i = 0;\n"
+--- a/third_party/wasm2c/src/wasm2c.c.tmpl	2023-06-03 19:27:51.220882350 +0200
++++ b/third_party/wasm2c/src/wasm2c.c.tmpl	2023-06-03 19:28:55.413196170 +0200
+@@ -110,6 +110,14 @@
+ #define wasm_asm(X)
+ #endif
+ 
++#ifndef WABT_BIG_ENDIAN
++#  if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
++#    define WABT_BIG_ENDIAN 1
++#  elif __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
++#    define WABT_BIG_ENDIAN 0
++#  endif
++#endif
++
+ #if WABT_BIG_ENDIAN
+ static inline void load_data(void *dest, const void *src, size_t n) {
+   size_t i = 0;
