@@ -35,6 +35,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://debian-hacks/Use-build-id-as-langpack-version-for-reproducibility.patch \
            file://debian-hacks/Use-the-Mozilla-Location-Service-key-when-the-Google.patch \
            file://fixes/Allow-.js-preference-files-to-set-locked-prefs-with-.patch \
+           file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
            file://porting/Add-xptcall-support-for-SH4-processors.patch \
            file://porting/NSS-Fix-FTBFS-on-Hurd-because-of-MAXPATHLEN.patch \
            file://porting/Use-compiler-macros-to-detect-big-endian.patch \
