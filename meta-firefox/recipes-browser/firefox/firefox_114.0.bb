@@ -25,7 +25,6 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://0003-configure-use-rustflags-and-stay-offline.patch \
            file://debian-hacks/Add-a-2-minutes-timeout-on-xpcshell-tests.patch \
            file://debian-hacks/Add-another-preferences-directory-for-applications-p.patch \
-           file://debian-hacks/Add-missing-webrtc-directory-for-ppc64el-bz-1775202.patch \
            file://debian-hacks/Allow-to-override-rust-LTO-flag.patch \
            file://debian-hacks/Avoid-using-vmrs-vmsr-on-armel.patch \
            file://debian-hacks/Avoid-wrong-sessionstore-data-to-keep-windows-out-of.patch \
@@ -38,9 +37,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
            file://porting/Add-xptcall-support-for-SH4-processors.patch \
            file://porting/NSS-Fix-FTBFS-on-Hurd-because-of-MAXPATHLEN.patch \
-           file://porting/Use-compiler-macros-to-detect-big-endian.patch \
            file://porting/Use-NEON_FLAGS-instead-of-VPX_ASFLAGS-for-libaom-neo.patch \
-           file://porting/Work-around-another-GCC-ICE-on-arm.patch \
            file://wayland/egl/bug1571603-Disable-eglQueryString-nullptr-EGL_EXTENSIONS.patch \
            file://wayland/egl/0001-Mark-GLFeature-framebuffer_multisample-as-unsupporte.patch \
            file://wayland/egl/0001-GLLibraryLoader-Use-given-symbol-lookup-function-fir.patch \
@@ -68,7 +65,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            "
 
 
-SRC_URI[sha256sum] = "f132b702836311b6cc40873b69df3ce208d035dbc8ce390c390eebd63d27c7a3"
+SRC_URI[sha256sum] = "d23a0502742f52110ce496837ba82b47bf38d40585633787508ae5be9a5b4bc6"
 
 SRCREV_chardetng = "3484d3e3ebdc8931493aa5df4d7ee9360a90e76b"
 SRCREV_chardetng_c = "ed8a4c6f900a90d4dbc1d64b856e61490a1c3570"

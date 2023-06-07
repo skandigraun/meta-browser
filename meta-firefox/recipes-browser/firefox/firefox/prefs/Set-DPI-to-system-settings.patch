@@ -10,7 +10,7 @@ diff --git a/modules/libpref/init/StaticPrefList.yaml b/modules/libpref/init/Sta
 index 7c717a2..9138ac13 100644
 --- a/modules/libpref/init/StaticPrefList.yaml
 +++ b/modules/libpref/init/StaticPrefList.yaml
-@@ -8215,7 +8215,7 @@
+@@ -8243,7 +8243,7 @@
  # interpretation of physical units such as "pt".
  - name: layout.css.dpi
    type: int32_t
@@ -18,4 +18,4 @@ index 7c717a2..9138ac13 100644
 +  value: 0
    mirror: always
  
- # Whether @layer is enabled
+ # Whether Container Queries are enabled
