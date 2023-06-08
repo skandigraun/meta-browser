@@ -87,7 +87,7 @@ PACKAGECONFIG knobs
   Firefox on Linux doesn't enable WebGL against most GPUs by default. This
   option adds a config file to enable it focedly.
 
-* forbit-multiple-compositors: (off by default)
+* forbid-multiple-compositors: (off by default)
   This option allows to create only one GPU accelerated compositor, second and
   the following windows will use basic compositors. Multiple compositor may
   cause crash on platforms that doesn't support multiple EGL windows.
