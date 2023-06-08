@@ -34,7 +34,6 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://debian-hacks/Use-build-id-as-langpack-version-for-reproducibility.patch \
            file://debian-hacks/Use-the-Mozilla-Location-Service-key-when-the-Google.patch \
            file://fixes/Allow-.js-preference-files-to-set-locked-prefs-with-.patch \
-           file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
            file://porting/Add-xptcall-support-for-SH4-processors.patch \
            file://porting/NSS-Fix-FTBFS-on-Hurd-because-of-MAXPATHLEN.patch \
            file://porting/Use-NEON_FLAGS-instead-of-VPX_ASFLAGS-for-libaom-neo.patch \
@@ -111,13 +110,12 @@ PACKAGECONFIG[gpu] = ",,,"
 PACKAGECONFIG[openmax] = "--enable-openmax,,,"
 PACKAGECONFIG[webgl] = ",,,"
 PACKAGECONFIG[webrtc] = "--enable-webrtc,--disable-webrtc,,"
-PACKAGECONFIG[forbit-multiple-compositors] = ",,,"
+PACKAGECONFIG[forbid-multiple-compositors] = ",,,"
 
 # Add a config file to enable GPU acceleration by default.
 SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'gpu', \
            'file://prefs/gpu.js', '', d)}"
 
-# Additional upstream patches to support OpenMAX IL
 SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'openmax', \
            'file://fixes/Bug-1590977-openmax-Import-latest-OpenMAX-IL-1.1.2-headers.patch \
             file://prefs/openmax.js \
@@ -126,7 +124,7 @@ SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'openmax', \
 SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'webgl', \
            'file://prefs/webgl.js', '', d)}"
 
-SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbit-multiple-compositors', \
+SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbid-multiple-compositors', \
            'file://prefs/single-compositor.js \
             file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
 	   ', '', d)}"
