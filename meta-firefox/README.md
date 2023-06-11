@@ -1,4 +1,4 @@
-Note from me
+Note from OldManYellsAtCloud
 ============
 
 This is an updated version of meta-firefox layer, with a newer version of Firefox.
@@ -8,9 +8,9 @@ Feel free to test, and report back the results.
 
 The layer build successfully with aarch64-poky-linux-gnu arch (tested with PinePhone). Tests with other architectures would be welcome.
 
-Plan to upstream this in the very near future. If you want to help in, feel free to solve an issue or open a new one.
+Plan to upstream this in the near future. If you want to help in, feel free to solve an issue or open a new one.
 
-The PACKAGECFG part of this readme below could be outdated at this time.
+Make sure to add `RUST_PANIC_STRATEGY = "abort"` to local.conf before compiling Rust.
 
 OpenEmbedded/Yocto BSP layer for Firefox Browser
 ================================================
@@ -81,7 +81,7 @@ PACKAGECONFIG knobs
 
 * openmax: (off by default)
   Enable OpenMAX IL decoder to play H.264 video.
-  This features is confirmed only on Renesas RZ/G1.
+  This features is confirmed only on Renesas RZ/G1. Note: it is untested with version 113+.
 
 * webgl: (off by default)
   Firefox on Linux doesn't enable WebGL against most GPUs by default. This
