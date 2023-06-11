@@ -30,8 +30,8 @@ export BUILD_VERBOSE_LOG="1"
 mozilla_run_mach() {
 	export SHELL="/bin/sh"
 	export RUSTFLAGS="${RUSTFLAGS} -Cpanic=abort -Clinker=${WORKDIR}/wrapper/target-rust-ccld --sysroot=${RECIPE_SYSROOT}"
-#	export BINDGEN_CFLAGS="--target=${TARGET_SYS} --sysroot=${RECIPE_SYSROOT} ${BINDGEN_MFLOAT} -mlittle-endian -Qunused-arguments -fstack-protector-strong  -Os -D_FORTIFY_SOURCE=2 -fsigned-char -fno-strict-aliasing"
 
+	export BINDGEN_MFLOAT="${@bb.utils.contains('TUNE_CCARGS_MFLOAT', 'hard', '-mfloat-abi=hard', '', d)}"
         export BINDGEN_CFLAGS="--target=${TARGET_SYS} --sysroot=${RECIPE_SYSROOT} ${BINDGEN_MFLOAT}"
 	export INSTALL_SDK=0
 	export DESTDIR="${D}"
