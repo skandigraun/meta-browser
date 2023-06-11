@@ -23,6 +23,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://0001-trust-yocto-rust-binary.patch \
            file://0002-use-offline-crates.patch \
            file://0003-configure-use-rustflags-and-stay-offline.patch \
+           file://0004-Fix-compiling-with-enable-openmax-config.patch \
            file://debian-hacks/Add-a-2-minutes-timeout-on-xpcshell-tests.patch \
            file://debian-hacks/Add-another-preferences-directory-for-applications-p.patch \
            file://debian-hacks/Allow-to-override-rust-LTO-flag.patch \
