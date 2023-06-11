@@ -13,4 +13,6 @@ S = "${WORKDIR}/zstandard-0.21.0"
 
 RDEPENDS_${PN} = ""
 
+NO_GENERIC_LICENSE[BSD] = "LICENSE"
+
 inherit setuptools3
