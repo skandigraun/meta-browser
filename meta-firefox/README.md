@@ -12,6 +12,8 @@ Plan to upstream this in the near future. If you want to help in, feel free to s
 
 Make sure to add `RUST_PANIC_STRATEGY = "abort"` to local.conf before compiling Rust.
 
+In case you are building the browser for a CPU without hardware encryption support (e.g. anything before armv8, like the first gen RPi), set the following in your distro.conf: `PREFERRED_VERSION_nss = "3.89"`
+
 OpenEmbedded/Yocto BSP layer for Firefox Browser
 ================================================
 
