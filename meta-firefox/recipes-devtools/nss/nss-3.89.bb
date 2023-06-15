@@ -11,6 +11,8 @@ SECTION = "libs"
 DEPENDS = "sqlite3 nspr zlib nss-native"
 DEPENDS:class-native = "sqlite3-native nspr-native zlib-native"
 
+CONFLICTS = "nss"
+
 LICENSE = "(MPL-2.0 & MIT) | (MPL-2.0 & GPL-2.0-or-later & MIT) | (MPL-2.0 & LGPL-2.1-or-later & MIT)"
 
 LIC_FILES_CHKSUM = "file://nss/COPYING;md5=3b1e88e1b9c0b5a4b2881d46cce06a18 \
