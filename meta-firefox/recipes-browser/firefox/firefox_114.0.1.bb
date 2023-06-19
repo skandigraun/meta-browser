@@ -11,8 +11,8 @@ DEPENDS += "pulseaudio cbindgen-native \
 RDEPENDS:${PN}-dev = "dbus"
 
 # use system's nss in case the CPU has no native crypto support (e.g. armv7)
-DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss", d)}"
-RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss nspr", d)}"
+DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.89", d)}"
+RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.89 nspr", d)}"
 
 LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://toolkit/content/license.html;md5=1b074cb88f7e9794d795c1346bcc9c80"
@@ -22,6 +22,7 @@ CVE_PRODUCT = "mozilla:firefox"
 SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${PV}.source.tar.xz \
            file://mozilla-firefox.png \
            file://mozilla-firefox.desktop \
+           file://mozconfig \
            file://prefs/vendor.js \
            file://0001-trust-yocto-rust-binary.patch \
            file://0002-use-offline-crates.patch \
@@ -66,9 +67,6 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            git://github.com/mozilla/mp4parse-rust;protocol=https;branch=master;name=mp4parse;destsuffix=mp4parse \
            git://github.com/servo/rust-cssparser;protocol=https;branch=master;name=cssparser;destsuffix=cssparser \
            "
-
-# if the CPU doesn't have hw crypto support, use system's nss instead of Firefox's vendored one
-SRC_URI += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "file://no-system-nss/mozconfig", "file://system-nss/mozconfig", d)}"
 
 SRC_URI[sha256sum] = "7e4ebc13e8c94af06f703af2119cf1641d4186174a3d59b7812f9d28f61b7d18"
 
@@ -135,15 +133,7 @@ SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbid-multiple-compositors',
             file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
 	   ', '', d)}"
 
-# TODO: get rid of this...
-do_configure:prepend(){
-    hw_crypto="${@bb.utils.contains('TUNE_FEATURES', 'crypto', 'true', 'false', d)}"
-    if $hw_crypto; then
-        mv ${WORKDIR}/no-system-nss/mozconfig ${WORKDIR}/mozconfig
-    else
-        mv ${WORKDIR}/system-nss/mozconfig ${WORKDIR}/mozconfig
-   fi
-}
+EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
 
 do_compile:prepend(){
     head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
