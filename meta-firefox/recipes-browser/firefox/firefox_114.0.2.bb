@@ -4,9 +4,11 @@
 include firefox_crates.inc
 DESCRIPTION ?= "Browser made by mozilla"
 
-DEPENDS += "pulseaudio cbindgen-native \
-            clang-native nodejs-native python-zstandard gtk+3 \
-            wasi-sdk-native libevent dbus-glib"
+DEPENDS += "pulseaudio cbindgen-native clang-native \
+            nodejs-native python-zstandard gtk+3 \
+            libevent dbus-glib"
+
+DEPENDS += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
 
 RDEPENDS:${PN}-dev = "dbus"
 
@@ -115,6 +117,7 @@ PACKAGECONFIG[openmax] = "--enable-openmax,,,"
 PACKAGECONFIG[webgl] = ",,,"
 PACKAGECONFIG[webrtc] = "--enable-webrtc,--disable-webrtc,,"
 PACKAGECONFIG[forbid-multiple-compositors] = ",,,"
+PACKAGECONFIG[disable-sandboxed-libraries] = ",,,"
 
 # Add a config file to enable GPU acceleration by default.
 SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'gpu', \
@@ -134,6 +137,7 @@ SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbid-multiple-compositors',
 	   ', '', d)}"
 
 EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
+EXTRA_OECONF += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "--without-wasm-sandboxed-libraries", "", d)}'
 
 do_compile:prepend(){
     head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
