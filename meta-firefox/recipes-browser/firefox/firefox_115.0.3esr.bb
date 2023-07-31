@@ -10,6 +10,7 @@ DEPENDS += "pulseaudio cbindgen-native clang-native \
 
 DEPENDS += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
 
+RDEPENDS:${PN} = "libva"
 RDEPENDS:${PN}-dev = "dbus"
 
 # use system's nss in case the CPU has no native crypto support (e.g. armv7)
