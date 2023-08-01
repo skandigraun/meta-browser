@@ -14,7 +14,6 @@ DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.89", d)}"
 RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.89 nspr", d)}"
 
 LICENSE = "MPL-2.0"
-LIC_FILES_CHKSUM = "file://toolkit/content/license.html;md5=1b074cb88f7e9794d795c1346bcc9c80"
 
 CVE_PRODUCT = "mozilla:firefox"
 
