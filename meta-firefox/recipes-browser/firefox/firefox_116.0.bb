@@ -1,10 +1,10 @@
 # Copyright (C) 2009-2015, O.S. Systems Software Ltda. All Rights Reserved
 # Released under the MIT license (see packages/COPYING)
 
-include firefox_crates_esr.inc
+include firefox_crates_stable.inc
 include firefox.inc
 
-FILESEXTRAPATHS:prepend := "${THISDIR}/firefox-esr:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/firefox-stable:"
 
 SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${PV}.source.tar.xz \
            file://mozilla-firefox.png \
@@ -54,6 +54,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            git://github.com/gfx-rs/wgpu.git;protocol=https;branch=trunk;name=wgpu;destsuffix=wgpu \
            git://github.com/mozilla/audioipc;protocol=https;branch=master;name=audioipc;destsuffix=audioipc \
            git://github.com/servo/rust-cssparser;protocol=https;branch=master;name=cssparser;destsuffix=cssparser \
+           git://github.com/franziskuskiefer/cose-rust;protocol=https;branch=master;name=cose-rust;deststuffix=core-rust \
            "
 
 SRC_URI[sha256sum] = "0bcc571c44f94ac6b8c26e896fd771eb7bd41b2a8ec35598bced0102c1b855fa"
@@ -76,7 +77,7 @@ SRCREV_uniffi-rs = "bc7ff8977bf38d0fdd1a458810b14f434d4dc4de"
 SRCREV_wgpu = "73b4257b17cc62ecc8df6d6aa3730bd9c6cba4b9"
 SRCREV_audioipc = "0b51291d2483a17dce3e300c7784b369e02bee73"
 SRCREV_cssparser = "45bc47e2bcb846f1efb5aea156be5fe7d18624bf"
-
+SRCREV_cose-rust = "43c22248d136c8b38fe42ea709d08da6355cf04b"
 
 # Add a config file to enable GPU acceleration by default.
 SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'gpu', \
@@ -94,3 +95,4 @@ SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbid-multiple-compositors',
            'file://prefs/single-compositor.js \
             file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
 	   ', '', d)}"
+
