@@ -57,7 +57,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            git://github.com/franziskuskiefer/cose-rust;protocol=https;branch=master;name=cose-rust;deststuffix=core-rust \
            "
 
-SRC_URI[sha256sum] = "0bcc571c44f94ac6b8c26e896fd771eb7bd41b2a8ec35598bced0102c1b855fa"
+SRC_URI[sha256sum] = "215d076945bf744327a252f498227ab68e9ba4e3b703e058683d9e4ab92cba76"
 
 SRCREV_chardetng = "3484d3e3ebdc8931493aa5df4d7ee9360a90e76b"
 SRCREV_chardetng_c = "ed8a4c6f900a90d4dbc1d64b856e61490a1c3570"
