@@ -4,6 +4,8 @@
 include firefox_crates_esr.inc
 include firefox.inc
 
+LIC_FILES_CHKSUM = "file://toolkit/content/license.html;md5=1b074cb88f7e9794d795c1346bcc9c80"
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/firefox-esr:"
 
 SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${PV}.source.tar.xz \

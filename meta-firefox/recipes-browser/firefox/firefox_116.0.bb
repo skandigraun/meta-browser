@@ -4,6 +4,8 @@
 include firefox_crates_stable.inc
 include firefox.inc
 
+LIC_FILES_CHKSUM = "file://toolkit/content/license.html;md5=1c7c8a999b435cb71deb175b3d59b7fe"
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/firefox-stable:"
 
 SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${PV}.source.tar.xz \
@@ -27,7 +29,6 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://debian-hacks/Work-around-bz-1775202-to-fix-FTBFS-on-ppc64el.patch \
            file://debian-hacks/Work-around-https-sourceware.org-bugzilla-show_bug.c.patch \
            file://fixes/Allow-.js-preference-files-to-set-locked-prefs-with-.patch \
-           file://fixes/Bug-1841197-Undefine-the-mips-builtin-macro-on-mips-.patch \
            file://porting/Add-xptcall-support-for-SH4-processors.patch \
            file://porting/NSS-Fix-FTBFS-on-Hurd-because-of-MAXPATHLEN.patch \
            file://porting/Use-NEON_FLAGS-instead-of-VPX_ASFLAGS-for-libaom-neo.patch \
@@ -54,7 +55,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            git://github.com/gfx-rs/wgpu.git;protocol=https;branch=trunk;name=wgpu;destsuffix=wgpu \
            git://github.com/mozilla/audioipc;protocol=https;branch=master;name=audioipc;destsuffix=audioipc \
            git://github.com/servo/rust-cssparser;protocol=https;branch=master;name=cssparser;destsuffix=cssparser \
-           git://github.com/franziskuskiefer/cose-rust;protocol=https;branch=master;name=cose-rust;deststuffix=core-rust \
+           git://github.com/franziskuskiefer/cose-rust;protocol=https;branch=master;name=cose-rust;destsuffix=cose-rust \
            "
 
 SRC_URI[sha256sum] = "215d076945bf744327a252f498227ab68e9ba4e3b703e058683d9e4ab92cba76"
