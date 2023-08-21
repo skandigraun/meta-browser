@@ -10,7 +10,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/firefox-stable:"
 
 SRC_URI += "git://github.com/franziskuskiefer/cose-rust;protocol=https;branch=master;name=cose-rust;destsuffix=cose-rust"
 
-SRC_URI[sha256sum] = "6708ab24a748de336aff4789f97f248452a46117e86bb6b4b9746768e52fb114"
+SRC_URI[sha256sum] = "575a0d11b487a03527cc90c5e6d556c09669201cbb584b73442b202ee1d3e2e6"
 
 SRCREV_cose-rust = "43c22248d136c8b38fe42ea709d08da6355cf04b"
 
