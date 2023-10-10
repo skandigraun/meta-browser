@@ -28,6 +28,7 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            file://mozilla-firefox.desktop \
            file://mozconfig \
            file://prefs/vendor.js \
+           file://bug1545437-enable-to-specify-rust-target.patch \
            file://0001-trust-yocto-rust-binary.patch \
            file://0002-use-offline-crates.patch \
            file://0003-configure-use-rustflags-and-stay-offline.patch \
