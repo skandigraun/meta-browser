@@ -1,4 +1,16 @@
---- ./build/moz.configure/rust.configure.orig	2023-10-10 21:20:48.569221517 +0200
+From 2817f07563070d71b624b4397af32d820efec244 Mon Sep 17 00:00:00 2001
+From: Takuro Ashie <ashie@clear-code.com>
+Date: Thu, 18 Apr 2019 23:15:16 +0900
+Subject: [PATCH] Bug 1545437 - Add options to specify Rust target name
+
+ r?glandium
+
+Certain build systems such as Yocto know more suitable Rust target name, so it
+would be better that there is a way to pass it to Mozilla's build system.
+
+Differential Revision: https://phabricator.services.mozilla.com/D28069
+
+--- ./build/moz.configure/rust.configure	2023-10-10 21:20:48.569221517 +0200
 +++ ./build/moz.configure/rust.configure	2023-10-10 21:57:13.730821538 +0200
 @@ -280,8 +280,29 @@
      return data
