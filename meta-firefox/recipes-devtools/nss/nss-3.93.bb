@@ -8,7 +8,7 @@ v3 certificates, and other security standards."
 HOMEPAGE = "http://www.mozilla.org/projects/security/pki/nss/"
 SECTION = "libs"
 
-DEPENDS = "sqlite3 nspr zlib nss-native"
+DEPENDS = "sqlite3 nspr zlib nss-3.93-native"
 DEPENDS:class-native = "sqlite3-native nspr-native zlib-native"
 
 CONFLICTS = "nss"
@@ -18,13 +18,13 @@ LICENSE = "(MPL-2.0 & MIT) | (MPL-2.0 & GPL-2.0-or-later & MIT) | (MPL-2.0 & LGP
 LIC_FILES_CHKSUM = "file://nss/COPYING;md5=3b1e88e1b9c0b5a4b2881d46cce06a18 \
                     file://nss/lib/freebl/mpi/doc/LICENSE;md5=491f158d09d948466afce85d6f1fe18f \
                     file://nss/lib/freebl/mpi/doc/LICENSE-MPL;md5=5d425c8f3157dbf212db2ec53d9e5132 \
-                    file://nss/lib/freebl/verified/Hacl_Poly1305_256.c;beginline=1;endline=22;md5=d4096c1e4421ee56e9e0f441a8161f78"
+                    file://nss/lib/freebl/verified/Hacl_Poly1305_256.c;beginline=1;endline=22;md5=cc22f07b95d28d56baeb757df46ee7c8"
 
 VERSION_DIR = "${@d.getVar('BP').upper().replace('-', '_').replace('.', '_') + '_RTM'}"
 
-PV = "3.89"
+PV = "3.93"
 
-SRC_URI = "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_89_RTM/src/nss-3.89.tar.gz \
+SRC_URI = "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_93_RTM/src/nss-3.93.tar.gz \
            file://nss.pc.in \
            file://0001-nss-fix-support-cross-compiling.patch \
            file://nss-no-rpath-for-cross-compiling.patch \
@@ -37,14 +37,14 @@ SRC_URI = "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_89_RTM/src/ns
            file://nss-fix-nsinstall-build.patch \
            file://0001-freebl-add-a-configure-option-to-disable-ARM-HW-cryp.patch \
            "
-SRC_URI[sha256sum] = "55c37a3f4da010d0574fb8b39264cb1e7b4ce9e6c2954c1c7ecf9f41ee00bed5"
+SRC_URI[sha256sum] = "15f54bb72048eb105f8c0e936a04b899e74c3db9a19bbc1e00acee2af9476a8a"
 
 UPSTREAM_CHECK_URI = "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_Releases"
 UPSTREAM_CHECK_REGEX = "NSS_(?P<pver>.+)_release_notes"
 
 inherit siteinfo
 
-S = "${WORKDIR}/nss-3.89"
+S = "${WORKDIR}/nss-3.93"
 TD = "${S}/tentative-dist"
 TDS = "${S}/tentative-dist-staging"
 
@@ -249,7 +249,7 @@ do_install:append:class-target() {
     install -m 0644 ${WORKDIR}/system-pkcs11.txt ${D}${sysconfdir}/pki/nssdb/pkcs11.txt
 }
 
-PACKAGE_WRITE_DEPS += "nss-native"
+PACKAGE_WRITE_DEPS += "nss-3.93-native"
 
 pkg_postinst:${PN} () {
     for I in $D${libdir}/lib*.chk; do
