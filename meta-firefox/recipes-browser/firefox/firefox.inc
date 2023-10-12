@@ -10,8 +10,8 @@ RDEPENDS:${PN} = "libva"
 RDEPENDS:${PN}-dev = "dbus"
 
 # use system's nss in case the CPU has no native crypto support (e.g. armv7)
-DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.89", d)}"
-RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.89 nspr", d)}"
+DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.93", d)}"
+RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.93 nspr", d)}"
 
 LICENSE = "MPL-2.0"
 
