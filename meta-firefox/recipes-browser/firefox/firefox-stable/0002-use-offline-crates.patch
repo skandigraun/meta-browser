@@ -121,3 +121,11 @@
 +
 +[patch."https://github.com/gfx-rs/naga"]
 +naga = { path = "../naga" }
+--- ./.cargo/config.in	2023-10-17 21:46:58.338748888 +0200
++++ ./.cargo/config.in	2023-10-17 21:47:14.967005459 +0200
+@@ -150,4 +150,4 @@
+ # cargo will ignore it when it's here verbatim.
+ #filter substitution
+ [source."@REPLACE_NAME@"]
+-directory = "@top_srcdir@/@VENDORED_DIRECTORY@"
++directory = "../../cargo_home/bitbake"
