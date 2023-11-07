@@ -19,10 +19,10 @@ DEPENDS += "${@ ' nss-3.94' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
 
 # Just like for DEPENDS, do the same for RDEPENDS - if CPU has no crypto support,
 # add nss and nspr as runtime dependency. Use vendored versions for older Yocto releases.
-RDEPENDS += "${@ ' nss nspr' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+RDEPENDS:${PN} += "${@ ' nss nspr' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
               'kirkstone' not in d.getVar('LAYERSERIES_CORENAMES') and 'dunfell' not in d.getVar('LAYERSERIES_CORENAMES') else ''}"
 
-RDEPENDS += "${@ ' nss-3.94 nspr-4.35' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+RDEPENDS:${PN} += "${@ ' nss-3.94 nspr-4.35' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
              ('kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES')) else ''}"
 
 EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
