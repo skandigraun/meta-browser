@@ -9,10 +9,23 @@ DEPENDS += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries",
 RDEPENDS:${PN} = "libva"
 RDEPENDS:${PN}-dev = "dbus"
 
-# use system's nss in case the CPU has no native crypto support (e.g. armv7)
-DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.94", d)}"
-RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.94 nspr-4.35", d)}"
-RDEPENDS:${PN} += "${@ 'gtk3-immodule-wayland' if 'wayland' in d.getVar('PACKAGECONFIG') and 'touchscreen' in d.getVar('MACHINE_FEATURES') else ''}"
+# Use system's nss in case the CPU has no native crypto support (e.g. armv7)
+# On dunfell and kirkstone use the vendored version, as they contain too old version.
+DEPENDS += "${@ ' nss' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+              'kirkstone' not in d.getVar('LAYERSERIES_CORENAMES') and 'dunfell' not in d.getVar('LAYERSERIES_CORENAMES') else ''}"
+
+DEPENDS += "${@ ' nss-3.94' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+             ('kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES')) else ''}"
+
+# Just like for DEPENDS, do the same for RDEPENDS - if CPU has no crypto support,
+# add nss and nspr as runtime dependency. Use vendored versions for older Yocto releases.
+RDEPENDS += "${@ ' nss nspr' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+              'kirkstone' not in d.getVar('LAYERSERIES_CORENAMES') and 'dunfell' not in d.getVar('LAYERSERIES_CORENAMES') else ''}"
+
+RDEPENDS += "${@ ' nss-3.94 nspr-4.35' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+             ('kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES')) else ''}"
+
+EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
 
 LICENSE = "MPL-2.0"
 
@@ -141,7 +154,6 @@ PACKAGECONFIG[webrtc] = "--enable-webrtc,--disable-webrtc,,"
 PACKAGECONFIG[forbid-multiple-compositors] = ",,,"
 PACKAGECONFIG[disable-sandboxed-libraries] = ",,,"
 
-EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
 EXTRA_OECONF += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "--without-wasm-sandboxed-libraries", "", d)}'
 
 do_compile:prepend(){
