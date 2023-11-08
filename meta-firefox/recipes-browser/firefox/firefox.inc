@@ -6,6 +6,9 @@ DEPENDS += "pulseaudio cbindgen-native clang-native \
 
 DEPENDS += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
 
+DEPENDS:x86-64:append = " nasm-native "
+DEPENDS:x86:append = " nasm-native "
+
 RDEPENDS:${PN} = "libva"
 RDEPENDS:${PN}-dev = "dbus"
 
