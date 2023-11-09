@@ -1,10 +1,10 @@
 DESCRIPTION ?= "Browser made by mozilla"
 
-DEPENDS += "pulseaudio cbindgen-native clang-native \
+DEPENDS:append = "pulseaudio cbindgen-native clang-native \
             nodejs-native python-zstandard gtk+3 \
             libevent dbus-glib"
 
-DEPENDS += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
+DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
 
 DEPENDS:x86-64:append = " nasm-native "
 DEPENDS:x86:append = " nasm-native "
