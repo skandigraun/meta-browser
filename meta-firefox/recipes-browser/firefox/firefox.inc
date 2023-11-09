@@ -14,21 +14,22 @@ RDEPENDS:${PN}-dev = "dbus"
 
 # Use system's nss in case the CPU has no native crypto support (e.g. armv7)
 # On dunfell and kirkstone use the vendored version, as they contain too old version.
-DEPENDS += "${@ ' nss' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
-              'kirkstone' not in d.getVar('LAYERSERIES_CORENAMES') and 'dunfell' not in d.getVar('LAYERSERIES_CORENAMES') else ''}"
+# This is only for ARM arch: Firefox's nss explicitly includes code using hw-crypto support for this arch.
+ARM_AND_NO_HW_CRYPTO = "${@ True if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+                        ( 'arm' in d.getVar('TARGET_ARCH') or \
+                          'aarch64' in d.getVar('TARGET_ARCH') \
+                        ) else False }"
 
-DEPENDS += "${@ ' nss-3.94' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
-             ('kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES')) else ''}"
+KIRKSTONE_OR_DUNFELL = "${@ True if 'kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES') \
+                        else False }"
 
-# Just like for DEPENDS, do the same for RDEPENDS - if CPU has no crypto support,
-# add nss and nspr as runtime dependency. Use vendored versions for older Yocto releases.
-RDEPENDS:${PN} += "${@ ' nss nspr' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
-              'kirkstone' not in d.getVar('LAYERSERIES_CORENAMES') and 'dunfell' not in d.getVar('LAYERSERIES_CORENAMES') else ''}"
+DEPENDS:append = "${@ ' nss ' if ${ARM_AND_NO_HW_CRYPTO} and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+DEPENDS:append = "${@ ' nss-3.94 ' if ${ARM_AND_NO_HW_CRYPTO} and ${KIRKSTONE_OR_DUNFELL} else '' }"
 
-RDEPENDS:${PN} += "${@ ' nss-3.94 nspr-4.35' if 'crypto' not in d.getVar('TUNE_FEATURES') and \
-             ('kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES')) else ''}"
+RDEPENDS:${PN}:append = "${@ ' nss nspr ' if ${ARM_AND_NO_HW_CRYPTO} and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+RDEPENDS:${PN}:append = "${@ ' nss-3.94 nspr-4.35 ' if ${ARM_AND_NO_HW_CRYPTO} and ${KIRKSTONE_OR_DUNFELL} else '' }"
 
-EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
+EXTRA_OECONF:append = "${@ ' --with-system-nss ' if ${ARM_AND_NO_HW_CRYPTO} else '' }"
 
 LICENSE = "MPL-2.0"
 
