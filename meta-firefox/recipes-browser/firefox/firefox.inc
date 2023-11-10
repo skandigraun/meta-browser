@@ -1,18 +1,35 @@
 DESCRIPTION ?= "Browser made by mozilla"
 
-DEPENDS += "pulseaudio cbindgen-native clang-native \
+DEPENDS:append = "pulseaudio cbindgen-native clang-native \
             nodejs-native python-zstandard gtk+3 \
             libevent dbus-glib"
 
-DEPENDS += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
+DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
+
+DEPENDS:x86-64:append = " nasm-native "
+DEPENDS:x86:append = " nasm-native "
 
 RDEPENDS:${PN} = "libva"
 RDEPENDS:${PN}-dev = "dbus"
 
-# use system's nss in case the CPU has no native crypto support (e.g. armv7)
-DEPENDS += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.94", d)}"
-RDEPENDS:${PN} += "${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "nss-3.94 nspr-4.35", d)}"
-RDEPENDS:${PN} += "${@ 'gtk3-immodule-wayland' if 'wayland' in d.getVar('PACKAGECONFIG') and 'touchscreen' in d.getVar('MACHINE_FEATURES') else ''}"
+# Use system's nss in case the CPU has no native crypto support (e.g. armv7)
+# On dunfell and kirkstone use the vendored version, as they contain too old version.
+# This is only for ARM arch: Firefox's nss explicitly includes code using hw-crypto support for this arch.
+ARM_AND_NO_HW_CRYPTO = "${@ True if 'crypto' not in d.getVar('TUNE_FEATURES') and \
+                        ( 'arm' in d.getVar('TARGET_ARCH') or \
+                          'aarch64' in d.getVar('TARGET_ARCH') \
+                        ) else False }"
+
+KIRKSTONE_OR_DUNFELL = "${@ True if 'kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES') \
+                        else False }"
+
+DEPENDS:append = "${@ ' nss ' if ${ARM_AND_NO_HW_CRYPTO} and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+DEPENDS:append = "${@ ' nss-3.94 ' if ${ARM_AND_NO_HW_CRYPTO} and ${KIRKSTONE_OR_DUNFELL} else '' }"
+
+RDEPENDS:${PN}:append = "${@ ' nss nspr ' if ${ARM_AND_NO_HW_CRYPTO} and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+RDEPENDS:${PN}:append = "${@ ' nss-3.94 nspr-4.35 ' if ${ARM_AND_NO_HW_CRYPTO} and ${KIRKSTONE_OR_DUNFELL} else '' }"
+
+EXTRA_OECONF:append = "${@ ' --with-system-nss ' if ${ARM_AND_NO_HW_CRYPTO} else '' }"
 
 LICENSE = "MPL-2.0"
 
@@ -141,7 +158,6 @@ PACKAGECONFIG[webrtc] = "--enable-webrtc,--disable-webrtc,,"
 PACKAGECONFIG[forbid-multiple-compositors] = ",,,"
 PACKAGECONFIG[disable-sandboxed-libraries] = ",,,"
 
-EXTRA_OECONF += '${@bb.utils.contains("TUNE_FEATURES", "crypto", "", "--with-system-nss", d)}'
 EXTRA_OECONF += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "--without-wasm-sandboxed-libraries", "", d)}'
 
 do_compile:prepend(){
