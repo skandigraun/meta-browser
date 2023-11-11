@@ -4,8 +4,6 @@ DEPENDS:append = "pulseaudio cbindgen-native clang-native \
             nodejs-native python-zstandard gtk+3 \
             libevent dbus-glib"
 
-DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
-
 DEPENDS:x86-64:append = " nasm-native "
 DEPENDS:x86:append = " nasm-native "
 
@@ -22,14 +20,6 @@ ARM_AND_NO_HW_CRYPTO = "${@ True if 'crypto' not in d.getVar('TUNE_FEATURES') an
 
 KIRKSTONE_OR_DUNFELL = "${@ True if 'kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES') \
                         else False }"
-
-DEPENDS:append = "${@ ' nss ' if ${ARM_AND_NO_HW_CRYPTO} and not ${KIRKSTONE_OR_DUNFELL} else '' }"
-DEPENDS:append = "${@ ' nss-3.94 ' if ${ARM_AND_NO_HW_CRYPTO} and ${KIRKSTONE_OR_DUNFELL} else '' }"
-
-RDEPENDS:${PN}:append = "${@ ' nss nspr ' if ${ARM_AND_NO_HW_CRYPTO} and not ${KIRKSTONE_OR_DUNFELL} else '' }"
-RDEPENDS:${PN}:append = "${@ ' nss-3.94 nspr-4.35 ' if ${ARM_AND_NO_HW_CRYPTO} and ${KIRKSTONE_OR_DUNFELL} else '' }"
-
-EXTRA_OECONF:append = "${@ ' --with-system-nss ' if ${ARM_AND_NO_HW_CRYPTO} else '' }"
 
 LICENSE = "MPL-2.0"
 
@@ -149,6 +139,9 @@ PACKAGECONFIG ??= "${@bb.utils.contains("DISTRO_FEATURES", "alsa", "alsa", "", d
                    ${@bb.utils.contains("DISTRO_FEATURES", "wayland", "wayland", "", d)} \
                    ${@bb.utils.contains_any("TARGET_ARCH", "x86_64 arm aarch64", "webrtc", "", d)} \
 "
+
+PACKAGECONFIG:append = "${@ ' system-nss system-nspr ' if ${ARM_AND_NO_HW_CRYPTO} else '' }"
+
 PACKAGECONFIG[alsa] = "--enable-alsa,--disable-alsa,alsa-lib"
 PACKAGECONFIG[wayland] = "--enable-default-toolkit=cairo-gtk3-wayland,--enable-default-toolkit=cairo-gtk3,virtual/egl,"
 PACKAGECONFIG[gpu] = ",,,"
@@ -156,9 +149,31 @@ PACKAGECONFIG[openmax] = "--enable-openmax,,,"
 PACKAGECONFIG[webgl] = ",,,"
 PACKAGECONFIG[webrtc] = "--enable-webrtc,--disable-webrtc,,"
 PACKAGECONFIG[forbid-multiple-compositors] = ",,,"
-PACKAGECONFIG[disable-sandboxed-libraries] = ",,,"
+PACKAGECONFIG[disable-sandboxed-libraries] = "--without-wasm-sandboxed-libraries,,,"
 
-EXTRA_OECONF += '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "--without-wasm-sandboxed-libraries", "", d)}'
+# nspr and nss dependencies are handled separately, due to requiring
+# different versions depending on Yocto version and CPU capabilities.
+PACKAGECONFIG[system-nspr] = "--with-system-nspr,,"
+PACKAGECONFIG[system-nss] = "--with-system-nss,,"
+PACKAGECONFIG[system-ffi] = "--with-system-ffi,,libffi,libffi"
+PACKAGECONFIG[system-icu] = "--with-system-icu,,icu,icu"
+PACKAGECONFIG[system-zlib] = "--with-system-zlib,,zlib,zlib"
+PACKAGECONFIG[system-pixman] = "--enable-system-pixman,,pixman,pixman"
+PACKAGECONFIG[system-jpeg] = "--with-system-jpeg,,libjpeg-turbo,libjpeg-turbo"
+PACKAGECONFIG[system-libevent] = "--with-system-libevent,,libevent,libevent"
+PACKAGECONFIG[system-libvpx] = "--with-system-libvpx,,libvpx,libvpx"
+PACKAGECONFIG[system-png] = "--with-system-png,,libpng,libpng"
+PACKAGECONFIG[system-webp] = "--with-system-webp,,libwebp,libwebp"
+
+DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
+
+DEPENDS:append = "${@ ' nss ' if 'system-nss' in d.getVar('PACKAGECONFIG') and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+DEPENDS:append = "${@ ' nss-3.94 ' if 'system-nss' in d.getVar('PACKAGECONFIG') and ${KIRKSTONE_OR_DUNFELL} else '' }"
+
+RDEPENDS:${PN}:append = "${@ ' nss ' if 'system-nss' in d.getVar('PACKAGECONFIG') and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+RDEPENDS:${PN}:append = "${@ ' nss-3.94 ' if 'system-nss' in d.getVar('PACKAGECONFIG') and ${KIRKSTONE_OR_DUNFELL} else '' }"
+RDEPENDS:${PN}:append = "${@ ' nspr ' if 'system-nspr' in d.getVar('PACKAGECONFIG') and not ${KIRKSTONE_OR_DUNFELL} else '' }"
+RDEPENDS:${PN}:append = "${@ ' nspr-4.35 ' if 'system-nspr' in d.getVar('PACKAGECONFIG') and ${KIRKSTONE_OR_DUNFELL} else '' }"
 
 do_compile:prepend(){
     head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
