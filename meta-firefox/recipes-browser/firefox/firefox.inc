@@ -18,9 +18,6 @@ ARM_AND_NO_HW_CRYPTO = "${@ True if 'crypto' not in d.getVar('TUNE_FEATURES') an
                           'aarch64' in d.getVar('TARGET_ARCH') \
                         ) else False }"
 
-KIRKSTONE_OR_DUNFELL = "${@ True if 'kirkstone' in d.getVar('LAYERSERIES_CORENAMES') or 'dunfell' in d.getVar('LAYERSERIES_CORENAMES') \
-                        else False }"
-
 LICENSE = "MPL-2.0"
 
 CVE_PRODUCT = "mozilla:firefox"
@@ -153,8 +150,8 @@ PACKAGECONFIG[disable-sandboxed-libraries] = "--without-wasm-sandboxed-libraries
 
 # nspr and nss dependencies are handled separately, due to requiring
 # different versions depending on Yocto version and CPU capabilities.
-PACKAGECONFIG[system-nspr] = "--with-system-nspr,,"
-PACKAGECONFIG[system-nss] = "--with-system-nss,,"
+PACKAGECONFIG[system-nspr] = "--with-system-nspr,,nspr-4.35,nspr-4.35"
+PACKAGECONFIG[system-nss] = "--with-system-nss,,nss-3.94,nss-3.94"
 PACKAGECONFIG[system-ffi] = "--with-system-ffi,,libffi,libffi"
 PACKAGECONFIG[system-icu] = "--with-system-icu,,icu,icu"
 PACKAGECONFIG[system-zlib] = "--with-system-zlib,,zlib,zlib"
@@ -166,14 +163,6 @@ PACKAGECONFIG[system-png] = "--with-system-png,,libpng,libpng"
 PACKAGECONFIG[system-webp] = "--with-system-webp,,libwebp,libwebp"
 
 DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
-
-DEPENDS:append = "${@ ' nss ' if 'system-nss' in d.getVar('PACKAGECONFIG') and not ${KIRKSTONE_OR_DUNFELL} else '' }"
-DEPENDS:append = "${@ ' nss-3.94 ' if 'system-nss' in d.getVar('PACKAGECONFIG') and ${KIRKSTONE_OR_DUNFELL} else '' }"
-
-RDEPENDS:${PN}:append = "${@ ' nss ' if 'system-nss' in d.getVar('PACKAGECONFIG') and not ${KIRKSTONE_OR_DUNFELL} else '' }"
-RDEPENDS:${PN}:append = "${@ ' nss-3.94 ' if 'system-nss' in d.getVar('PACKAGECONFIG') and ${KIRKSTONE_OR_DUNFELL} else '' }"
-RDEPENDS:${PN}:append = "${@ ' nspr ' if 'system-nspr' in d.getVar('PACKAGECONFIG') and not ${KIRKSTONE_OR_DUNFELL} else '' }"
-RDEPENDS:${PN}:append = "${@ ' nspr-4.35 ' if 'system-nspr' in d.getVar('PACKAGECONFIG') and ${KIRKSTONE_OR_DUNFELL} else '' }"
 
 do_compile:prepend(){
     head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
