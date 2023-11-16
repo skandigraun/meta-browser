@@ -28,6 +28,11 @@ MOZ_APP_BASE_VERSION = "${@'${PV}'.replace('esr', '')}"
 
 inherit mozilla
 
+# target-c-int-width size for rust target
+# in poky it is defined as 64, however it fails to compile
+# a small handful of crates.
+TARGET_C_INT_WIDTH[riscv64gc] = "32"
+
 SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${PV}.source.tar.xz \
            file://mozilla-firefox.png \
            file://mozilla-firefox.desktop \
