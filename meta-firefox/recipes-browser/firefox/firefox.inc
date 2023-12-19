@@ -158,7 +158,7 @@ PACKAGECONFIG[system-libvpx] = "--with-system-libvpx,,libvpx,libvpx"
 PACKAGECONFIG[system-png] = "--with-system-png,,libpng,libpng"
 PACKAGECONFIG[system-webp] = "--with-system-webp,,libwebp,libwebp"
 
-DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", "wasi-sdk-native", d)}'
+DEPENDS:append = '${@bb.utils.contains("PACKAGECONFIG", "disable-sandboxed-libraries", "", " wasi-sdk-native ", d)}'
 
 do_compile:prepend(){
     head -n 38 "${WORKDIR}/cargo_home/config" > "${WORKDIR}/cargo_home/config_tmp"
