@@ -94,8 +94,6 @@ SRCREV_FORMAT .= "_aa-stroke"
 SRCREV_aa-stroke = "07d3c25322518f294300e96246e09b95e118555d"
 SRCREV_FORMAT .= "_cubeb-coreaudio"
 SRCREV_cubeb-coreaudio = "93b5c01a131f65c83c11aeb317f4583405c5eb79"
-SRCREV_FORMAT .= "_cubeb-pulse"
-SRCREV_cubeb-pulse = "c04c4d2c7f2291cb81a1c48f5a8c425748f18cd8"
 SRCREV_FORMAT .= "_mapped_hyph"
 SRCREV_mapped_hyph = "c7651a0cffff41996ad13c44f689bd9cd2192c01"
 

@@ -59,6 +59,8 @@ SRCREV_wpf-gpu-raster = "99979da091fd58fba8477e7fcdf5ec0727102916"
 
 SRCREV_FORMAT .= "_warp"
 SRCREV_warp = "9d081461ae1167eb321585ce424f4fef6cf0092b"
+SRCREV_FORMAT .= "_cubeb-pulse"
+SRCREV_cubeb-pulse = "c04c4d2c7f2291cb81a1c48f5a8c425748f18cd8"
 
 SRCREV_FORMAT .= "_bindgen"
 SRCREV_bindgen = "86f3dbe846020e2ba573d6eb38d1434d0cbcbb40"
