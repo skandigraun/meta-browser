@@ -10,117 +10,6 @@ Upstream-status: Inappropriate
  third_party/rust/suggest/Cargo.toml |  8 +--
  3 files changed, 69 insertions(+), 33 deletions(-)
 
---- ./Cargo.toml	2024-02-19 18:28:30.167362766 +0100
-+++ ./Cargo.toml	2024-02-19 18:33:06.431115830 +0100
-@@ -182,33 +182,71 @@
- rure = { path = "third_party/rust/rure" }
- 
- # To-be-published changes.
--cssparser = { git = "https://github.com/servo/rust-cssparser", rev = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0" }
--cssparser-macros = { git = "https://github.com/servo/rust-cssparser", rev = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0" }
-+cssparser = { path = "../cssparser" }
-+cssparser-macros = { path = "../cssparser/macros" }
- 
- # Other overrides
--chardetng = { git = "https://github.com/hsivonen/chardetng", rev = "3484d3e3ebdc8931493aa5df4d7ee9360a90e76b" }
--chardetng_c = { git = "https://github.com/hsivonen/chardetng_c", rev = "ed8a4c6f900a90d4dbc1d64b856e61490a1c3570" }
--coremidi = { git = "https://github.com/chris-zen/coremidi.git", rev = "fc68464b5445caf111e41f643a2e69ccce0b4f83" }
--cose = { git = "https://github.com/franziskuskiefer/cose-rust", rev = "43c22248d136c8b38fe42ea709d08da6355cf04b" }
-+chardetng = { path = "../chardetng" }
-+chardetng_c = { path = "../chardetng_c" }
-+coremidi = { path = "../coremidi" }
-+cose = { path = "../cose-rust" }
- firefox-on-glean = { path = "toolkit/components/glean/api" }
- icu_capi = { path = "intl/icu_capi" }
- icu_segmenter_data = { path = "intl/icu_segmenter_data" }
- libudev-sys = { path = "dom/webauthn/libudev-sys" }
--midir = { git = "https://github.com/mozilla/midir.git", rev = "85156e360a37d851734118104619f86bd18e94c6" }
-+midir = { path = "../midir" }
- # warp 0.3.6 + https://github.com/seanmonstar/warp/pull/1069
--warp = { git = "https://github.com/seanmonstar/warp", rev = "9d081461ae1167eb321585ce424f4fef6cf0092b" }
-+warp = { path = "../warp" }
- # Allow webrender to have a versioned dependency on the older crate on crates.io
- # in order to build standalone.
- malloc_size_of_derive = { path = "xpcom/rust/malloc_size_of_derive" }
- 
- # application-services overrides to make updating them all simpler.
--interrupt-support = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
--sql-support = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
--suggest = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
--sync15 = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
--tabs = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
--viaduct = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
--webext-storage = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
-+interrupt-support = { path = "../application-services/components/support/interrupt", version = "0.1.0" }
-+sql-support = { path = "../application-services/components/support/sql", version = "0.1.0" }
-+sync15 = { path = "../application-services/components/sync15", version = "0.1.0" }
-+tabs = { path = "../application-services/components/tabs", version = "0.1.0" }
-+viaduct = { path = "third_party/rust/viaduct", version = "0.1.0" }
-+webext-storage = { path = "../application-services/components/webext-storage", version = "0.1.0" }
-+suggest = { path = "third_party/rust/suggest" }
-+
-+diplomat = { path = "../diplomat/macro" }
-+diplomat-runtime = { path = "../diplomat/runtime" }
-+icu_provider_macros = { path = "../icu4x/provider/macros" }
-+yoke-derive = { path = "../icu4x/utils/yoke/derive" }
-+zerofrom-derive = { path = "../icu4x/utils/zerofrom/derive" }
-+zerovec-derive = { path = "../icu4x/utils/zerovec/derive" }
-+
-+metal = { path = "../metal" }
-+
-+[patch."https://github.com/mozilla-spidermonkey/jsparagus"]
-+jsparagus = { path = "../jsparagus" }
-+
-+[patch."https://github.com/mozilla/neqo"]
-+neqo-http3 = { path = "../neqo/neqo-http3", version = "0.6.5" }
-+neqo-common = { path = "../neqo/neqo-common", version = "0.6.5" }
-+neqo-transport = { path = "../neqo/neqo-transport", version = "0.6.5" }
-+neqo-qpack = { path = "../neqo/neqo-qpack", version = "0.6.5" }
-+neqo-crypto = { path = "../neqo/neqo-crypto", version = "0.6.5" }
-+
-+[patch."https://github.com/FirefoxGraphics/aa-stroke"]
-+aa-stroke = { path = "../aa-stroke"}
-+
-+[patch."https://github.com/mozilla/audioipc"]
-+audioipc2-client = { path = "../audioipc/client" }
-+audioipc2-server = { path = "../audioipc/server" }
-+
-+[patch."https://github.com/mozilla/cubeb-coreaudio-rs"]
-+cubeb-coreaudio = { path = "../cubeb-coreaudio" }
-+
-+[patch."https://github.com/mozilla/cubeb-pulse-rs"]
-+cubeb-pulse = { path = "../cubeb-pulse" }
-+
-+[patch."https://github.com/jfkthame/mapped_hyph.git"]
-+mapped_hyph = { path = "../mapped_hyph" }
-+
-+[patch."https://github.com/mozilla/mp4parse-rust"]
-+mp4parse_capi = { path = "../mp4parse/mp4parse_capi", version = "0.17.0" }
- 
- # Patch mio 0.6 to use winapi 0.3 and miow 0.3, getting rid of winapi 0.2.
- # There is not going to be new version of mio 0.6, mio now being >= 0.7.11.
-@@ -216,8 +254,16 @@
- path = "third_party/rust/mio-0.6.23"
- 
- [patch."https://github.com/mozilla/uniffi-rs.git"]
--uniffi = "=0.25.3"
--uniffi_bindgen = "=0.25.3"
--uniffi_build = "=0.25.3"
--uniffi_macros = "=0.25.3"
--weedle2 = "=4.0.0"
-+uniffi-example-arithmetic = { path = "../uniffi-rs/examples/arithmetic" }
-+uniffi-example-geometry = { path = "../uniffi-rs/examples/geometry" }
-+uniffi-example-rondpoint = { path = "../uniffi-rs/examples/rondpoint" }
-+uniffi-example-sprites = { path = "../uniffi-rs/examples/sprites" }
-+uniffi-example-todolist = { path = "../uniffi-rs/examples/todolist" }
-+
-+[patch."https://github.com/FirefoxGraphics/wpf-gpu-raster"]
-+wpf-gpu-raster = { path = "../wpf-gpu-raster" }
-+
-+[patch."https://github.com/gfx-rs/wgpu"]
-+wgpu-core = { path = "../wgpu/wgpu-core" }
-+wgpu-types = { path = "../wgpu/wgpu-types" }
-+wgpu-hal = { path = "../wgpu/wgpu-hal" }
 --- ./.cargo/config.in	2024-02-19 18:37:17.820994705 +0100
 +++ ./.cargo/config.in	2024-02-19 18:41:22.292904599 +0100
 @@ -120,4 +120,4 @@
@@ -209,3 +98,107 @@ Upstream-status: Inappropriate
  [dependencies.url]
  version = "2.1"
  features = ["serde"]
+--- ./Cargo.toml	2024-03-04 13:24:51.000000000 +0100
++++ ./Cargo.toml	2024-03-14 13:26:22.929973414 +0100
+@@ -182,33 +182,64 @@
+ rure = { path = "third_party/rust/rure" }
+ 
+ # To-be-published changes.
+-cssparser = { git = "https://github.com/servo/rust-cssparser", rev = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0" }
+-cssparser-macros = { git = "https://github.com/servo/rust-cssparser", rev = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0" }
++cssparser = { path = "../cssparser" }
++cssparser-macros = { path = "../cssparser/macros" }
+ 
+ # Other overrides
+-chardetng = { git = "https://github.com/hsivonen/chardetng", rev = "3484d3e3ebdc8931493aa5df4d7ee9360a90e76b" }
+-chardetng_c = { git = "https://github.com/hsivonen/chardetng_c", rev = "ed8a4c6f900a90d4dbc1d64b856e61490a1c3570" }
+-coremidi = { git = "https://github.com/chris-zen/coremidi.git", rev = "fc68464b5445caf111e41f643a2e69ccce0b4f83" }
+-cose = { git = "https://github.com/franziskuskiefer/cose-rust", rev = "43c22248d136c8b38fe42ea709d08da6355cf04b" }
++chardetng = { path = "../chardetng" }
++chardetng_c = { path = "../chardetng_c" }
++coremidi = { path = "../coremidi" }
++cose = { path = "../cose-rust" }
+ firefox-on-glean = { path = "toolkit/components/glean/api" }
+ icu_capi = { path = "intl/icu_capi" }
+ icu_segmenter_data = { path = "intl/icu_segmenter_data" }
+ libudev-sys = { path = "dom/webauthn/libudev-sys" }
+-midir = { git = "https://github.com/mozilla/midir.git", rev = "85156e360a37d851734118104619f86bd18e94c6" }
++midir = { path = "../midir" }
+ # warp 0.3.6 + https://github.com/seanmonstar/warp/pull/1069
+-warp = { git = "https://github.com/seanmonstar/warp", rev = "9d081461ae1167eb321585ce424f4fef6cf0092b" }
++warp = { path = "../warp" }
+ # Allow webrender to have a versioned dependency on the older crate on crates.io
+ # in order to build standalone.
+ malloc_size_of_derive = { path = "xpcom/rust/malloc_size_of_derive" }
+ 
+ # application-services overrides to make updating them all simpler.
+-interrupt-support = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
+-sql-support = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
+-suggest = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
+-sync15 = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
+-tabs = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
+-viaduct = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
+-webext-storage = { git = "https://github.com/mozilla/application-services", rev = "63a6260c14847c21c5a1fa3003efaf0114a3e4e5" }
++interrupt-support = { path = "../application-services/components/support/interrupt", version = "0.1.0" }
++sql-support = { path = "../application-services/components/support/sql", version = "0.1.0" }
++sync15 = { path = "../application-services/components/sync15", version = "0.1.0" }
++tabs = { path = "../application-services/components/tabs", version = "0.1.0" }
++viaduct = { path = "third_party/rust/viaduct", version = "0.1.0" }
++webext-storage = { path = "../application-services/components/webext-storage", version = "0.1.0" }
++suggest = { path = "third_party/rust/suggest" }
++
++metal = { path = "../metal" }
++
++[patch."https://github.com/mozilla-spidermonkey/jsparagus"]
++jsparagus = { path = "../jsparagus" }
++
++[patch."https://github.com/mozilla/neqo"]
++neqo-http3 = { path = "../neqo/neqo-http3", version = "0.6.5" }
++neqo-common = { path = "../neqo/neqo-common", version = "0.6.5" }
++neqo-transport = { path = "../neqo/neqo-transport", version = "0.6.5" }
++neqo-qpack = { path = "../neqo/neqo-qpack", version = "0.6.5" }
++neqo-crypto = { path = "../neqo/neqo-crypto", version = "0.6.5" }
++
++[patch."https://github.com/FirefoxGraphics/aa-stroke"]
++aa-stroke = { path = "../aa-stroke"}
++
++[patch."https://github.com/mozilla/audioipc"]
++audioipc2-client = { path = "../audioipc/client" }
++audioipc2-server = { path = "../audioipc/server" }
++
++[patch."https://github.com/mozilla/cubeb-coreaudio-rs"]
++cubeb-coreaudio = { path = "../cubeb-coreaudio" }
++
++[patch."https://github.com/mozilla/cubeb-pulse-rs"]
++cubeb-pulse = { path = "../cubeb-pulse" }
++
++[patch."https://github.com/jfkthame/mapped_hyph.git"]
++mapped_hyph = { path = "../mapped_hyph" }
++
++[patch."https://github.com/mozilla/mp4parse-rust"]
++mp4parse_capi = { path = "../mp4parse/mp4parse_capi", version = "0.17.0" }
+ 
+ # Patch mio 0.6 to use winapi 0.3 and miow 0.3, getting rid of winapi 0.2.
+ # There is not going to be new version of mio 0.6, mio now being >= 0.7.11.
+@@ -216,8 +247,16 @@
+ path = "third_party/rust/mio-0.6.23"
+ 
+ [patch."https://github.com/mozilla/uniffi-rs.git"]
+-uniffi = "=0.25.3"
+-uniffi_bindgen = "=0.25.3"
+-uniffi_build = "=0.25.3"
+-uniffi_macros = "=0.25.3"
+-weedle2 = "=4.0.0"
++uniffi-example-arithmetic = { path = "../uniffi-rs/examples/arithmetic" }
++uniffi-example-geometry = { path = "../uniffi-rs/examples/geometry" }
++uniffi-example-rondpoint = { path = "../uniffi-rs/examples/rondpoint" }
++uniffi-example-sprites = { path = "../uniffi-rs/examples/sprites" }
++uniffi-example-todolist = { path = "../uniffi-rs/examples/todolist" }
++
++[patch."https://github.com/FirefoxGraphics/wpf-gpu-raster"]
++wpf-gpu-raster = { path = "../wpf-gpu-raster" }
++
++[patch."https://github.com/gfx-rs/wgpu"]
++wgpu-core = { path = "../wgpu/wgpu-core" }
++wgpu-types = { path = "../wgpu/wgpu-types" }
++wgpu-hal = { path = "../wgpu/wgpu-hal" }
