@@ -76,7 +76,6 @@ SRC_URI += "https://ftp.mozilla.org/pub/firefox/releases/${PV}/source/firefox-${
            git://github.com/gfx-rs/wgpu.git;protocol=https;branch=trunk;name=wgpu;destsuffix=wgpu \
            git://github.com/mozilla/audioipc;protocol=https;branch=master;name=audioipc;destsuffix=audioipc \
            git://github.com/mozilla/mp4parse-rust;protocol=https;branch=master;name=mp4parse;destsuffix=mp4parse \
-           git://github.com/gfx-rs/naga;protocol=https;branch=master;name=naga;destsuffix=naga \
            "
 
 SRCREV_FOMAT .= "_chardetng"
