@@ -175,27 +175,27 @@ Note: the dependency column refers to the `destsuffix` used in the recipes.
 | 115.9.1esr | cubeb-coreaudio | 93b5c01a131f65c83c11aeb317f4583405c5eb79 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
 | 115.9.1esr | aa-stroke | 07d3c25322518f294300e96246e09b95e118555d | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
 | 115.9.1esr | jsparagus | 64ba08e24749616de2344112f226d1ef4ba893ae | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`. |
-| 124.0 | application-services | 5fc8ee2f0f6950e36d4096983757bd046d55df9f | This involves a collection of crates developed by Mozilla. These are specified in the top level Cargo.toml, by explicit hash. (interrupt-support, sql-support, sync15, tabs, viaduct, webext-storage, suggest) |
-| 124.0 | cose-rust | 43c22248d136c8b38fe42ea709d08da6355cf04b | This commit is required explicitly by the top level Cargo.toml |
-| 124.0 | minidump-writer | 99c561931fe8cf1fa2135b3f23ff6588bef8fd1e | This commit corresponds to version 0.8.3, which is a dependency of `toolkit/crashreporter/rust_minidump_writer_linux/Cargo.toml` |
-| 124.0 | minidump-common | c3de84b061339c686a572fb9f059e7ba3fad38d6 | This commit corresponds to version 1.19.1, which is specified by `third_party/rust/minidump-writer/Cargo.toml` |
-| 124.0 | packed-simd | d938e39bee9bc5c222f5f2f2a0df9e53b5ce36ae | This commit corresponds to v0.3.9, which is required by `./third_party/rust/encoding_rs/Cargo.toml`. |
-| 124.0 | mp4parse | a138e40ec1c603615873e524b5b22e11c0ec4820 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 124.0 | neqo | 9489511f7c82786f55bc9c713cddbff825507ed7 | This commit corresponds to v0.7.0, which is required by `netwerk/socket/neqo_glue/Cargo.toml` | 
-| 124.0 | wgpu | 07e59eb6fc7de3f682f1c401b9cf9f0da9ee4b4a | This commit is required explicitly by `gfx/wgpu_bindings/Cargo.toml` |
-| 124.0 | uniffi-rs | afb29ebdc1d9edf15021b1c5332fc9f285bbe13b | This commit corresponds to v0.25.3, which is referred by the top level Cargo.toml. |
-| 124.0 | metal | f507da4686234e658f31de54d2aa0dfa8abd236b | This is version v0.27.0, which is required by `wgpu-hal` (above) |
-| 124.0 | cssparser | aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0 | This commit is required explicitly by the top level Cargo.toml |
-| 124.0 | audioipc | 596bdb7fbb5745ea415726e16bd497e6c850a540 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 124.0 | wpf-gpu-raster | 99979da091fd58fba8477e7fcdf5ec0727102916 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 124.0 | warp | 9d081461ae1167eb321585ce424f4fef6cf0092b | This commit is required explicitly by the top level Cargo.toml |
-| 124.0 | cubeb-pulse | 8ff972c8e2ec1782ff262ac4071c0415e69b1367 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 124.0 | cubeb-coreaudio | d23ab55eab684b46f46e1da177c8814f6103a009 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
-| 124.0 | midir | 85156e360a37d851734118104619f86bd18e94c6 | This commit is required explicitly by the top level Cargo.toml |
-| 124.0 | aa-stroke | 96e66f91bb8e8efb80ff144eabd668002aa89650 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
-| 124.0 | jsparagus | 61f399c53a641ebd3077c1f39f054f6d396a633c | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`.|
-| 124.0 | mio | 9a2ef335c366044ffe73b1c4acabe50a1daefe05 | This commit is required explicitly by the top level Cargo.toml |
-| 124.0 | quiche | 09ea4b244096a013071cfe2175bbf2945fb7f8d1 | This commit is required explicitly by `netwerk/socket/neqo_glue/Cargo.toml` (qlog crate) |
+| 124.0.1 | application-services | 5fc8ee2f0f6950e36d4096983757bd046d55df9f | This involves a collection of crates developed by Mozilla. These are specified in the top level Cargo.toml, by explicit hash. (interrupt-support, sql-support, sync15, tabs, viaduct, webext-storage, suggest) |
+| 124.0.1 | cose-rust | 43c22248d136c8b38fe42ea709d08da6355cf04b | This commit is required explicitly by the top level Cargo.toml |
+| 124.0.1 | minidump-writer | 99c561931fe8cf1fa2135b3f23ff6588bef8fd1e | This commit corresponds to version 0.8.3, which is a dependency of `toolkit/crashreporter/rust_minidump_writer_linux/Cargo.toml` |
+| 124.0.1 | minidump-common | c3de84b061339c686a572fb9f059e7ba3fad38d6 | This commit corresponds to version 1.19.1, which is specified by `third_party/rust/minidump-writer/Cargo.toml` |
+| 124.0.1 | packed-simd | d938e39bee9bc5c222f5f2f2a0df9e53b5ce36ae | This commit corresponds to v0.3.9, which is required by `./third_party/rust/encoding_rs/Cargo.toml`. |
+| 124.0.1 | mp4parse | a138e40ec1c603615873e524b5b22e11c0ec4820 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 124.0.1 | neqo | 9489511f7c82786f55bc9c713cddbff825507ed7 | This commit corresponds to v0.7.0, which is required by `netwerk/socket/neqo_glue/Cargo.toml` | 
+| 124.0.1 | wgpu | 07e59eb6fc7de3f682f1c401b9cf9f0da9ee4b4a | This commit is required explicitly by `gfx/wgpu_bindings/Cargo.toml` |
+| 124.0.1 | uniffi-rs | afb29ebdc1d9edf15021b1c5332fc9f285bbe13b | This commit corresponds to v0.25.3, which is referred by the top level Cargo.toml. |
+| 124.0.1 | metal | f507da4686234e658f31de54d2aa0dfa8abd236b | This is version v0.27.0, which is required by `wgpu-hal` (above) |
+| 124.0.1 | cssparser | aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0 | This commit is required explicitly by the top level Cargo.toml |
+| 124.0.1 | audioipc | 596bdb7fbb5745ea415726e16bd497e6c850a540 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 124.0.1 | wpf-gpu-raster | 99979da091fd58fba8477e7fcdf5ec0727102916 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 124.0.1 | warp | 9d081461ae1167eb321585ce424f4fef6cf0092b | This commit is required explicitly by the top level Cargo.toml |
+| 124.0.1 | cubeb-pulse | 8ff972c8e2ec1782ff262ac4071c0415e69b1367 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 124.0.1 | cubeb-coreaudio | d23ab55eab684b46f46e1da177c8814f6103a009 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
+| 124.0.1 | midir | 85156e360a37d851734118104619f86bd18e94c6 | This commit is required explicitly by the top level Cargo.toml |
+| 124.0.1 | aa-stroke | 96e66f91bb8e8efb80ff144eabd668002aa89650 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
+| 124.0.1 | jsparagus | 61f399c53a641ebd3077c1f39f054f6d396a633c | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`.|
+| 124.0.1 | mio | 9a2ef335c366044ffe73b1c4acabe50a1daefe05 | This commit is required explicitly by the top level Cargo.toml |
+| 124.0.1| quiche | 09ea4b244096a013071cfe2175bbf2945fb7f8d1 | This commit is required explicitly by `netwerk/socket/neqo_glue/Cargo.toml` (qlog crate) |
 | common | chardetng | 3484d3e3ebdc8931493aa5df4d7ee9360a90e76b | This commit is required explicitly by the top level Cargo.toml |
 | common | chardetng_c | ed8a4c6f900a90d4dbc1d64b856e61490a1c3570 | This commit is required explicitly by the top level Cargo.toml |
 | common | coremidi | fc68464b5445caf111e41f643a2e69ccce0b4f83 | This commit is required explicitly by the top level Cargo.toml |
