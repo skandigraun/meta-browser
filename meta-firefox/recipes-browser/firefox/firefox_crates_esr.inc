@@ -1,5 +1,5 @@
 SRC_URI += "crate://crates.io/adler/1.0.2 \
-            crate://crates.io/ahash/0.7.6 \
+            crate://crates.io/ahash/0.7.8 \
             crate://crates.io/aho-corasick/0.7.20 \
             crate://crates.io/alsa-sys/0.3.1 \
             crate://crates.io/alsa/0.7.0 \
@@ -448,7 +448,7 @@ SRC_URI += "crate://crates.io/adler/1.0.2 \
            "
 
 SRC_URI[adler-1.0.2.sha256sum] = "f26201604c87b1e01bd3d98f8d5d9a8fcbb815e8cedb41ffccbeb4bf593a35fe"
-SRC_URI[ahash-0.7.6.sha256sum] = "fcb51a0695d8f838b1ee009b3fbf66bda078cd64590202a864a8f3e8c4315c47"
+SRC_URI[ahash-0.7.8.sha256sum] = "891477e0c6a8957309ee5c45a6368af3ae14bb510732d2684ffa19af310920f9"
 SRC_URI[aho-corasick-0.7.20.sha256sum] = "cc936419f96fa211c1b9166887b38e5e40b19958e5b895be7c1f93adec7071ac"
 SRC_URI[alsa-0.7.0.sha256sum] = "8512c9117059663fb5606788fbca3619e2a91dac0e3fe516242eab1fa6be5e44"
 SRC_URI[alsa-sys-0.3.1.sha256sum] = "db8fee663d06c4e303404ef5f40488a53e062f89ba8bfed81f42325aafad1527"
