@@ -10,7 +10,8 @@ SRC_URI += "git://github.com/hsivonen/packed_simd.git;protocol=https;branch=0_3_
             git://github.com/gfx-rs/d3d12-rs;protocol=https;branch=master;name=d3d12-rs;destsuffix=d3d12-rs \
             git://github.com/glandium/warp.git;protocol=https;branch=pemfile;name=warp;destsuffix=warp \
             git://github.com/gfx-rs/naga;protocol=https;branch=master;name=naga;destsuffix=naga \
-            file://debian-hacks/Work-around-bz-1775202-to-fix-FTBFS-on-ppc64el.patch"
+            file://debian-hacks/Work-around-bz-1775202-to-fix-FTBFS-on-ppc64el.patch \
+            file://0004-fix-compilation-with-clang18.patch"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/firefox-esr:"
 
