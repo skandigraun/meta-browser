@@ -15,7 +15,7 @@ SRC_URI += "git://github.com/franziskuskiefer/cose-rust;protocol=https;branch=ma
             git://github.com/mozilla/mp4parse-rust;protocol=https;branch=master;name=mp4parse;destsuffix=mp4parse \
             git://github.com/gfx-rs/metal-rs;protocol=https;branch=master;name=metal;destsuffix=metal \
             git://github.com/seanmonstar/warp;protocol=https;branch=master;name=warp;destsuffix=warp \
-            git://github.com/servo/rust-cssparser;protocol=https;branch=master;name=cssparser;destsuffix=cssparser \
+            git://github.com/servo/rust-cssparser;protocol=https;branch=main;name=cssparser;destsuffix=cssparser \
             git://github.com/glandium/mio;protocol=https;branch=windows-sys;name=mio;destsuffix=mio \
             git://github.com/servo/unicode-bidi;protocol=https;branch=main;name=unicode-bidi;destsuffix=unicode-bidi"
 
