@@ -2,42 +2,17 @@ This is an updated version of meta-firefox layer, with a newer version of Firefo
 
 Plan to upstream this in the near future. If you want to help in, feel free to solve an issue or open a new one.
 
-Make sure to add `RUST_PANIC_STRATEGY = "abort"` to local.conf before compiling Rust.
+Current build status:
 
-After a PR, a number of different arch-Firefox-Yocto combos are compiled automatically, as a smoke test.
-
-Current build status (updates might take up to a day after a PR is opened):
-
-Arm (32-bit):
-
-![scarthgap-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v125.0.3.yml/badge.svg)<br>
-![scarthgap-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v115.10.0esr.yml/badge.svg)<br>
-![nanbield-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-arm-v125.0.3.yml/badge.svg)<br>
-![nanbield-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-arm-v115.10.0esr.yml/badge.svg)<br>
-![kirkstone-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v125.0.3.yml/badge.svg)<br>
-![kirkstone-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v115.10.0esr.yml/badge.svg)<br>
-![dunfell-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-arm-v115.10.0esr.yml/badge.svg)<br>
-
-Aarch64:
-
-![scarthgap-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v125.0.3.yml/badge.svg)<br>
-![scarthgap-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v115.10.0esr.yml/badge.svg)<br>
-![nanbield-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-aarch64-v125.0.3.yml/badge.svg)<br>
-![nanbield-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-aarch64-v115.10.0esr.yml/badge.svg)<br>
-![kirkstone-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v125.0.3.yml/badge.svg)<br>
-![kirkstone-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v115.10.0esr.yml/badge.svg)<br>
-![dunfell-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-aarch64-v115.10.0esr.yml/badge.svg)<br>
-
-x86_64:
-
-![scarthgap-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v125.0.3.yml/badge.svg)<br>
-![scarthgap-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v115.10.0esr.yml/badge.svg)<br>
-![nanbield-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-x86_64-v125.0.3.yml/badge.svg)<br>
-![nanbield-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-x86_64-v115.10.0esr.yml/badge.svg)<br>
-![kirkstone-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v125.0.3.yml/badge.svg)<br>
-![kirkstone-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v115.10.0esr.yml/badge.svg)<br>
-![dunfell-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-x86_64-v115.10.0esr.yml/badge.svg)<br>
-
+| Yocto-FF version / Arch | arm (32-bit) | aarch64 | x86_64 | risc-v |
+| ----------------------- | ------------ | ------- | ------ | ------ |
+| Dunfell - 115.10.0esr   | ![dunfell-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-arm-v115.10.0esr.yml/badge.svg) | ![dunfell-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-aarch64-v115.10.0esr.yml/badge.svg) | ![dunfell-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-x86_64-v115.10.0esr.yml/badge.svg) | - |
+| Kirkstone - 115.10.0esr | ![kirkstone-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v115.10.0esr.yml/badge.svg) | ![kirkstone-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v115.10.0esr.yml/badge.svg) | ![kirkstone-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v115.10.0esr.yml/badge.svg) | - |
+| Kirkstone - 125.0.3     | ![kirkstone-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v125.0.3.yml/badge.svg) | ![kirkstone-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v125.0.3.yml/badge.svg) | ![kirkstone-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v125.0.3.yml/badge.svg) | - |
+| Nanbield - 115.10.0esr  | ![nanbield-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-arm-v115.10.0esr.yml/badge.svg) | ![nanbield-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-aarch64-v115.10.0esr.yml/badge.svg) | ![nanbield-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-x86_64-v115.10.0esr.yml/badge.svg) | ![nanbield-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-riscv-v115.10.0esr.yml/badge.svg) |
+| Nanbield - 125.0.3      | ![nanbield-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-arm-v125.0.3.yml/badge.svg) | ![nanbield-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-aarch64-v125.0.3.yml/badge.svg) | ![nanbield-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-x86_64-v125.0.3.yml/badge.svg) | ![nanbield-riscv-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/nanbield-riscv-v125.0.3.yml/badge.svg)
+| Scarthgap - 115.10.0esr | ![scarthgap-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v115.10.0esr.yml/badge.svg) | ![scarthgap-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v115.10.0esr.yml/badge.svg) | ![scarthgap-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v115.10.0esr.yml/badge.svg) | ![scarthgap-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v115.10.0esr.yml/badge.svg) |
+| Scarthgap - 125.0.3     | ![scarthgap-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v125.0.3.yml/badge.svg) | ![scarthgap-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v125.0.3.yml/badge.svg) | ![scarthgap-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v125.0.3.yml/badge.svg) | ![scarthgap-riscv-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v125.0.3.yml/badge.svg) |
 
 OpenEmbedded/Yocto BSP layer for Firefox Browser
 ================================================
@@ -54,6 +29,8 @@ testing.
 Note: this layer ships recipes for rust 1.75, taken from Scarthgap (used only for building the latest Firefox on Nanbield).
 If this is not something that makes you happy (because you want to use another rust, for example), then just add 
 `BBMASK += "meta-browser/meta-firefox/recipes-devtools/rust/"` line to local.conf in order to eliminate it.
+
+Note: Make sure to add `RUST_PANIC_STRATEGY = "abort"` to local.conf before compiling Rust.
 
 Note: On Dunfell currently only the ESR version of Firefox is supported. (Latest version requires a version of rust that is way too new
 for this release). Possibly version 115 will be the latest supported version on that release due to this issue, unless
