@@ -1,7 +1,24 @@
-require recipes-sato/images/core-image-sato.bb
+name: nanbield-riscv-125.0.3
+run-name: Build latest Firefox for Risc-V architecture with Nanbield
+on:
+  pull_request:
+    branches:
+      - master
 
-IMAGE_INSTALL += "firefox"
-IMAGE_INSTALL += "firefox-l10n-ach          firefox-l10n-en-gb  firefox-l10n-hi-in  firefox-l10n-ms     firefox-l10n-sr \
+jobs:
+  build-nanbield-riscv-latest:
+    runs-on: [self-hosted]
+    environment: ff-build-env
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: workspace/nanbield/meta-browser
+          ref: ${{ github.ref }}
+      - run: |
+         cd workspace/nanbield
+         kas checkout --update ./meta-browser/meta-firefox/kas/nanbield-latest-riscv-test.yml
+         kas shell ./meta-browser/meta-firefox/kas/nanbield-latest-riscv-test.yml -c "bitbake -c clean firefox firefox-test-image \
+                  firefox-l10n-ach          firefox-l10n-en-gb  firefox-l10n-hi-in  firefox-l10n-ms     firefox-l10n-sr \
                   firefox-l10n-af           firefox-l10n-en-us  firefox-l10n-hr     firefox-l10n-my     firefox-l10n-sv-se \
                   firefox-l10n-an           firefox-l10n-eo     firefox-l10n-hsb    firefox-l10n-nb-no  firefox-l10n-szl \
                   firefox-l10n-ar           firefox-l10n-es-ar  firefox-l10n-hu     firefox-l10n-ne-np  firefox-l10n-ta \
@@ -21,8 +38,10 @@ IMAGE_INSTALL += "firefox-l10n-ach          firefox-l10n-en-gb  firefox-l10n-hi-
                   firefox-l10n-de           firefox-l10n-gl     firefox-l10n-lt     firefox-l10n-sk     firefox-l10n-dsb \
                   firefox-l10n-gn           firefox-l10n-lv     firefox-l10n-sl     firefox-l10n-el     firefox-l10n-gu-in \
                   firefox-l10n-mk           firefox-l10n-son    firefox-l10n-en-ca  firefox-l10n-he     firefox-l10n-mr \
-                  firefox-l10n-sq"
-
-IMAGE_INSTALL += "connman-client"
-
-IMAGE_INSTALL:append:star64 = " visionfive2-pvr-graphics strace "
+                  firefox-l10n-sq           rust                rust-native         cargo               cargo-native \
+                  libstd-rs"
+         kas build ./meta-browser/meta-firefox/kas/nanbield-latest-riscv-test.yml
+         if [ ! -e ~/test-images/nanbield-riscv-latest.wic.gz ]; then
+           mv build/tmp/deploy/images/star64/firefox-test-image-star64.rootfs-*.wic.gz ~/test-images/nanbield-riscv-latest.wic.gz
+           mv build/tmp/deploy/images/star64/firefox-test-image-star64.rootfs-*.wic.bmap ~/test-images/nanbield-riscv-latest.wic.bmap
+         fi
