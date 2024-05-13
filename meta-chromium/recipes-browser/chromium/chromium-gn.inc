@@ -4,7 +4,7 @@ require gn-utils.inc
 
 GTKIC_VERSION = "${@bb.utils.contains('PACKAGECONFIG', 'gtk4', '4', '3',d)}"
 
-inherit features_check gtk-icon-cache qemu
+inherit features_check gtk-icon-cache qemu rust-common
 
 # The actual directory name in out/ is irrelevant for GN.
 OUTPUT_DIR = "out/Release"
@@ -13,6 +13,7 @@ B = "${S}/${OUTPUT_DIR}"
 # Backported patches.
 SRC_URI += "\
     file://backport/Make-toolchain_supports_rust_thin_lto-configurable.patch \
+    file://backport/Add-missing-components-enterprise-buildflag.patch \
 "
 # Non-specific patches.
 SRC_URI += "\
@@ -72,6 +73,7 @@ DEPENDS += " \
     jpeg \
     libdrm \
     libffi \
+    libstd-rs \
     libwebp \
     libxkbcommon \
     libxslt \
@@ -86,7 +88,6 @@ DEPENDS += " \
     pkgconfig-native \
     ${@bb.utils.contains('DISTRO_FEATURES', 'pulseaudio', 'pulseaudio', '', d)} \
     qemu-native \
-    rust \
     rust-native \
     virtual/libgl \
 "
