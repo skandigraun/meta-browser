@@ -1,0 +1,117 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 216d9dd8872..c84fcd8d629 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -26,7 +26,7 @@ compositing_traits = { path = "components/shared/compositing" }
+ content-security-policy = { version = "0.5", features = ["serde"] }
+ cookie = "0.12"
+ crossbeam-channel = "0.5"
+-cssparser = { version = "0.33", features = ["serde"], git = "https://github.com/servo/rust-cssparser", rev = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0" }
++cssparser = { path = "../cssparser", features = ["serde"] }
+ darling = { version = "0.20", default-features = false }
+ data-url = "0.1.0"
+ devtools_traits = { path = "components/shared/devtools" }
+@@ -63,7 +63,7 @@ keyboard-types = "0.7"
+ lazy_static = "1.4"
+ libc = "0.2"
+ log = "0.4"
+-malloc_size_of = { git = "https://github.com/servo/stylo", branch = "2024-04-16", features = ["servo"] }
++malloc_size_of = { path = "../stylo/malloc_size_of", features = ["servo"] }
+ malloc_size_of_derive = "0.1"
+ mime = "0.3.13"
+ mime_guess = "2.0.3"
+@@ -86,31 +86,31 @@ rustls = { version = "0.21.12", features = ["dangerous_configuration"] }
+ rustls-pemfile = "1.0.4"
+ script_layout_interface = { path = "components/shared/script_layout" }
+ script_traits = { path = "components/shared/script" }
+-selectors = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
++selectors = { path = "../stylo/selectors" }
+ serde = "1.0.201"
+ serde_bytes = "0.11"
+ serde_json = "1.0"
+-servo-media = { git = "https://github.com/servo/media" }
+-servo-media-dummy = { git = "https://github.com/servo/media" }
+-servo-media-gstreamer = { git = "https://github.com/servo/media" }
+-servo_arc = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
+-servo_atoms = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
+-size_of_test = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
++servo-media = { path = "../media/servo-media" }
++servo-media-dummy = { path = "../media/backends/dummy" }
++servo-media-gstreamer = { path = "../media/backends/gstreamer" }
++servo_arc = { path = "../stylo/servo_arc" }
++servo_atoms = { path = "../stylo/atoms" }
++size_of_test = { path = "../stylo/size_of_test" }
+ smallbitvec = "2.5.3"
+ smallvec = "1.13"
+ sparkle = "0.1.26"
+ string_cache = "0.8"
+ string_cache_codegen = "0.5"
+-style = { git = "https://github.com/servo/stylo", branch = "2024-04-16", features = ["servo"] }
+-style_config = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
+-style_traits = { git = "https://github.com/servo/stylo", branch = "2024-04-16", features = ["servo"] }
++style = { path = "../stylo/style", features = ["servo"] }
++style_config = { path = "../stylo/style_config" }
++style_traits = { path = "../stylo/style_traits", features = ["servo"] }
+ # NOTE: the sm-angle feature only enables ANGLE on Windows, not other platforms!
+ surfman = { version = "0.9", features = ["chains", "sm-angle", "sm-angle-default"] }
+ syn = { version = "2", default-features = false, features = ["clone-impls", "derive", "parsing"] }
+ synstructure = "0.13"
+ thin-vec = "0.2.13"
+ time = "0.1.41"
+-to_shmem = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
++to_shmem = { path = "../stylo/to_shmem" }
+ tokio = "1"
+ tokio-rustls = "0.24"
+ tungstenite = "0.20"
+@@ -122,8 +122,8 @@ url = "2.5"
+ uuid = { version = "1.8.0", features = ["v4"] }
+ webdriver = "0.49.0"
+ webpki-roots = "0.25"
+-webrender = { git = "https://github.com/servo/webrender", branch = "0.64", features = ["capture"] }
+-webrender_api = { git = "https://github.com/servo/webrender", branch = "0.64" }
++webrender = { path = "../webrender/webrender", features = ["capture"] }
++webrender_api = { path = "../webrender/webrender_api" }
+ webrender_traits = { path = "components/shared/webrender" }
+ wgpu-core = { git = "https://github.com/gfx-rs/wgpu", rev = "d0a5e48aa7e84683114c3870051cc414ae92ac03" }
+ wgpu-types = { git = "https://github.com/gfx-rs/wgpu", rev = "d0a5e48aa7e84683114c3870051cc414ae92ac03" }
+@@ -168,3 +168,26 @@ debug-assertions = false
+ #
+ # [patch."https://github.com/servo/<repository>"]
+ # <crate> = { path = "/path/to/local/checkout" }
++
++[patch."https://github.com/servo/webxr"]
++webxr = { path = "../webxr/webxr" }
++webxr-api = { path = "../webxr/webxr-api" }
++
++[patch."https://github.com/servo/fontsan"]
++fontsan = { path = "../fontsan" }
++
++[patch."https://github.com/pcwalton/signpost.git"]
++signpost = { path = "../signpost" }
++
++[patch."https://github.com/gfx-rs/wgpu"]
++wgpu-core = { path = "../wgpu/wgpu-core" }
++wgpu-types = { path = "../wgpu/wgpu-types" }
++
++[patch."https://github.com/servo/mozjs"]
++mozjs = { path = "../mozjs/mozjs" }
++
++[patch."https://github.com/servo/rust-cssparser/"]
++cssparser = { path = "../cssparser" }
++
++[patch."https://github.com/servo/webrender"]
++webrender_api = { path = "../webrender/webrender_api" }
+diff --git a/.cargo/config.toml b/.cargo/config.toml
+index e1bdd061199..bdd8eb74380 100644
+--- a/.cargo/config.toml
++++ b/.cargo/config.toml
+@@ -35,3 +35,9 @@ RUSTC_BOOTSTRAP = "crown,script,style_tests"
+ [build]
+ rustdocflags = ["--document-private-items"]
+ rustc = "crown"
++
++[source.crates-io]
++replace-with = "vendored-sources"
++
++[source.vendored-sources]
++directory = "../cargo_home/bitbake"
