@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - 'meta-browser/meta-firefox/**'
 
 jobs:
   build-dunfell-x86_64-esr:
