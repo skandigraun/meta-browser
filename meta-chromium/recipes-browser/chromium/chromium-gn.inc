@@ -12,9 +12,10 @@ B = "${S}/${OUTPUT_DIR}"
 
 # Backported patches.
 SRC_URI += "\
-    file://backport/Make-toolchain_supports_rust_thin_lto-configurable.patch \
     file://backport/Add-missing-components-enterprise-buildflag.patch \
+    file://backport/NewTabPage-Add-missing-dep-to-cr_components.patch \
 "
+
 # Non-specific patches.
 SRC_URI += "\
     file://0001-Remove-the-GN-settings-done-for-clang-that-conflict-.patch \
