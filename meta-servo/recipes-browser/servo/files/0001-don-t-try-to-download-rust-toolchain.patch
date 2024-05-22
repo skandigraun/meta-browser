@@ -1,0 +1,38 @@
+From e57a9c9ae40679757716009552bdb85216b74f3a Mon Sep 17 00:00:00 2001
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+Date: Thu, 16 May 2024 16:44:43 +0200
+Subject: [PATCH] don't try to download rust toolchain
+
+Mach should not try to download a toolchain, it supposed to be to
+available already in Yocto.
+---
+ python/servo/command_base.py | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+diff --git a/python/servo/command_base.py b/python/servo/command_base.py
+index 2ad49d1097d..e7c6368a2d3 100644
+--- a/python/servo/command_base.py
++++ b/python/servo/command_base.py
+@@ -930,19 +930,6 @@ class CommandBase(object):
+         return False
+ 
+     def ensure_bootstrapped(self):
+-        if self.context.bootstrapped:
+-            return
+-
+-        servo.platform.get().passive_bootstrap()
+-
+-        needs_toolchain_install = self.cross_compile_target and \
+-            self.cross_compile_target not in \
+-            check_output(["rustup", "target", "list", "--installed"],
+-                         cwd=self.context.topdir).decode()
+-        if needs_toolchain_install:
+-            check_call(["rustup", "target", "add", self.cross_compile_target],
+-                       cwd=self.context.topdir)
+-
+         self.context.bootstrapped = True
+ 
+     def ensure_rustup_version(self):
+-- 
+2.45.0
+

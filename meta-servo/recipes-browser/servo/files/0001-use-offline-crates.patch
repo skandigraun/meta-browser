@@ -1,0 +1,132 @@
+From f11d90472023197e778ec2c9aa719e4665eb3956 Mon Sep 17 00:00:00 2001
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+Date: Tue, 21 May 2024 19:19:25 +0200
+Subject: [PATCH] use offline crates
+
+Make sure that cargo looks for all crates offline, instead of
+getting it from the internet.
+---
+ .cargo/config.toml |  6 ++++++
+ Cargo.toml         | 53 +++++++++++++++++++++++++++++++++-------------
+ 2 files changed, 44 insertions(+), 15 deletions(-)
+
+diff --git a/.cargo/config.toml b/.cargo/config.toml
+index e1bdd06119..78233f1087 100644
+--- a/.cargo/config.toml
++++ b/.cargo/config.toml
+@@ -35,3 +35,9 @@ RUSTC_BOOTSTRAP = "crown,script,style_tests"
+ [build]
+ rustdocflags = ["--document-private-items"]
+ rustc = "crown"
++
++[source.crates-io]
++replace-with = "vendored-sources"
++
++[source.vendored-sources]
++directory = "../cargo_home/bitbake"
+diff --git a/Cargo.toml b/Cargo.toml
+index 8cc19a2cdf..b8c8f60fb8 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -28,7 +28,7 @@ compositing_traits = { path = "components/shared/compositing" }
+ content-security-policy = { version = "0.5", features = ["serde"] }
+ cookie = "0.12"
+ crossbeam-channel = "0.5"
+-cssparser = { version = "0.33", features = ["serde"], git = "https://github.com/servo/rust-cssparser", rev = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0" }
++cssparser = { path = "../cssparser", features = ["serde"] }
+ darling = { version = "0.20", default-features = false }
+ data-url = "0.1.0"
+ devtools_traits = { path = "components/shared/devtools" }
+@@ -66,7 +66,7 @@ keyboard-types = "0.7"
+ lazy_static = "1.4"
+ libc = "0.2"
+ log = "0.4"
+-malloc_size_of = { git = "https://github.com/servo/stylo", branch = "2024-04-16", features = ["servo"] }
++malloc_size_of = { path = "../stylo/malloc_size_of", features = ["servo"] }
+ malloc_size_of_derive = "0.1"
+ mime = "0.3.13"
+ mime_guess = "2.0.3"
+@@ -88,31 +88,31 @@ rustls = { version = "0.21.12", features = ["dangerous_configuration"] }
+ rustls-pemfile = "1.0.4"
+ script_layout_interface = { path = "components/shared/script_layout" }
+ script_traits = { path = "components/shared/script" }
+-selectors = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
++selectors = { path = "../stylo/selectors" }
+ serde = "1.0.202"
+ serde_bytes = "0.11"
+ serde_json = "1.0"
+-servo-media = { git = "https://github.com/servo/media" }
+-servo-media-dummy = { git = "https://github.com/servo/media" }
+-servo-media-gstreamer = { git = "https://github.com/servo/media" }
+-servo_arc = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
+-servo_atoms = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
+-size_of_test = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
++servo-media = { path = "../media/servo-media" }
++servo-media-dummy = { path = "../media/backends/dummy" }
++servo-media-gstreamer = { path = "../media/backends/gstreamer" }
++servo_arc = { path = "../stylo/servo_arc" }
++servo_atoms = { path = "../stylo/atoms" }
++size_of_test = { path = "../stylo/size_of_test" }
+ smallbitvec = "2.5.3"
+ smallvec = "1.13"
+ sparkle = "0.1.26"
+ string_cache = "0.8"
+ string_cache_codegen = "0.5"
+-style = { git = "https://github.com/servo/stylo", branch = "2024-04-16", features = ["servo"] }
+-style_config = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
+-style_traits = { git = "https://github.com/servo/stylo", branch = "2024-04-16", features = ["servo"] }
++style = { path = "../stylo/style", features = ["servo"] }
++style_config = { path = "../stylo/style_config" }
++style_traits = { path = "../stylo/style_traits", features = ["servo"] }
+ # NOTE: the sm-angle feature only enables ANGLE on Windows, not other platforms!
+ surfman = { version = "0.9", features = ["chains", "sm-angle", "sm-angle-default"] }
+ syn = { version = "2", default-features = false, features = ["clone-impls", "derive", "parsing"] }
+ synstructure = "0.13"
+ thin-vec = "0.2.13"
+ time = "0.1.41"
+-to_shmem = { git = "https://github.com/servo/stylo", branch = "2024-04-16" }
++to_shmem = { path = "../stylo/to_shmem" }
+ tokio = "1"
+ tokio-rustls = "0.24"
+ tungstenite = "0.20"
+@@ -125,8 +125,8 @@ url = "2.5"
+ uuid = { version = "1.8.0", features = ["v4"] }
+ webdriver = "0.49.0"
+ webpki-roots = "0.25"
+-webrender = { git = "https://github.com/servo/webrender", branch = "0.64", features = ["capture"] }
+-webrender_api = { git = "https://github.com/servo/webrender", branch = "0.64" }
++webrender = { path = "../webrender/webrender", features = ["capture"] }
++webrender_api = { path = "../webrender/webrender_api" }
+ webrender_traits = { path = "components/shared/webrender" }
+ wgpu-core = { git = "https://github.com/gfx-rs/wgpu", rev = "d0a5e48aa7e84683114c3870051cc414ae92ac03" }
+ wgpu-types = { git = "https://github.com/gfx-rs/wgpu", rev = "d0a5e48aa7e84683114c3870051cc414ae92ac03" }
+@@ -171,3 +171,26 @@ debug-assertions = false
+ #
+ # [patch."https://github.com/servo/<repository>"]
+ # <crate> = { path = "/path/to/local/checkout" }
++
++[patch."https://github.com/servo/webxr"]
++webxr = { path = "../webxr/webxr" }
++webxr-api = { path = "../webxr/webxr-api" }
++
++[patch."https://github.com/servo/fontsan"]
++fontsan = { path = "../fontsan" }
++
++[patch."https://github.com/pcwalton/signpost.git"]
++signpost = { path = "../signpost" }
++
++[patch."https://github.com/gfx-rs/wgpu"]
++wgpu-core = { path = "../wgpu/wgpu-core" }
++wgpu-types = { path = "../wgpu/wgpu-types" }
++
++[patch."https://github.com/servo/mozjs"]
++mozjs = { path = "../mozjs/mozjs" }
++
++[patch."https://github.com/servo/rust-cssparser/"]
++cssparser = { path = "../cssparser" }
++
++[patch."https://github.com/servo/webrender"]
++webrender_api = { path = "../webrender/webrender_api" }
+-- 
+2.45.0
+
