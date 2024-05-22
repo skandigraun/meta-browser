@@ -1,0 +1,42 @@
+From b2ad1bb7f115ee614c07788fdfa0ae66c816829c Mon Sep 17 00:00:00 2001
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+Date: Tue, 21 May 2024 19:27:30 +0200
+Subject: [PATCH] Use TARGET_CXXFLAGS to build mozjs
+
+When using build.rs script to build a crate, the used compiler flags pretty
+much depend on the mood of the script writer, very often they ignore the
+systemwide settings. This patch adds the `TARGET_CXXFLAGS` to the list of
+used flags.
+---
+ mozjs-sys/build.rs | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/mozjs-sys/build.rs b/mozjs-sys/build.rs
+index acb99f2fb..5ac96c198 100644
+--- a/mozjs-sys/build.rs
++++ b/mozjs-sys/build.rs
+@@ -372,7 +372,7 @@ fn build_jsapi_bindings(build_dir: &Path) {
+         builder = builder.clang_arg("-fms-compatibility");
+     }
+ 
+-    if let Ok(flags) = env::var("CXXFLAGS") {
++    if let Ok(flags) = env::var("TARGET_CXXFLAGS") {
+         for flag in flags.split_whitespace() {
+             builder = builder.clang_arg(flag);
+         }
+@@ -671,6 +671,12 @@ mod jsglue {
+             .allowlist_file("./src/jsglue.cpp")
+             .allowlist_recursively(false);
+ 
++        if let Ok(flags) = env::var("TARGET_CXXFLAGS") {
++            for flag in flags.split_whitespace() {
++                builder = builder.clang_arg(flag);
++            }
++        }
++
+         if msvc {
+             builder = builder.clang_args([
+                 "-fms-compatibility",
+-- 
+2.45.0
+
