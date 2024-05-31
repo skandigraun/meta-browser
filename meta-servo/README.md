@@ -1,10 +1,11 @@
-This is a Yocto/OpenEmbedded layer for Servo browser.
+Yocto/OpenEmbedded layer for Servo browser
+==========================================
 
 Maintainer: Gyorgy Sarvari/skandigraun@gmail.com
 
 This layer depends on meta-clang, poky and meta-oe layers. At this time only Scarthgap is supported.
 
-Important note: the current version of Servo must be compiled with Rust 1.74. Using 1.75 it fails to compile, and 1.73 is untested (Servo itself downloads 1.74 also, when built the official way). 
+Important note: the current version of Servo must be compiled with Rust 1.74. Using 1.75 it fails to compile, and 1.73 is untested (Servo itself downloads 1.74 also, when built with bootstrapping using its own script). 
 
 Unfortunately the required version of Rust is not provided by either poky nor meta-rust, so it is shipped with this layer. This comes with one or two caveats:
 
@@ -19,9 +20,9 @@ In my understanding RISC-V is unsupported by Servo at this time, though this is 
 
 Servo is a very quickly changing project, realistically it can't be tracked real time. I intend to create a new release every 7-10 days, with the latest commit from that point of time.
 
-At this time only the browser itself is available in the layer.
+At this time only the browser itself is available in the layer (e.g. libs/crates for embedding are not added to SDK yet).
 
-Feel free to open an issue or PR, if you see it fit.
+Feel free to open an issue or PR if you feel like it.
 
 # Errors
 
@@ -44,8 +45,7 @@ This supposed to be just a reminder for me, where are the magic commits in the r
 
 | Resource | Commit | Source of commit |
 | -------- | ------ | ---------------- |
-| cssparser | aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0 | Referenced by top level Cargo.toml |
-| stylo | ac65c5a27c1b9faf9e7bb5bbcb3a4837a810ef6b | This is the `HEAD` of `2024-04-16` branch (at the time of writing this), which is referenced by the top level Cargo.toml |
+| stylo | 039959da0beac876128b86fa4b80908d8e55fbaf | This is the `HEAD` of `2024-05-15` branch (at the time of writing this), which is referenced by the top level Cargo.toml |
 | media | 45756bef67037ade0f4f0125d579fdc3f3d457c8 | This is the `HEAD` of `main` branch (at this time), which is referenced by the top level Cargo.toml |
 | webrender | 9d354adf8955b1390dd56db89e6d5a9ea7880391 | This is the `HEAD` of `0.64` branch currently, which is referenced by top level Cargo.toml |
 | wgpu | d0a5e48aa7e84683114c3870051cc414ae92ac03 | Commit referenced by top level Cargo.toml |
