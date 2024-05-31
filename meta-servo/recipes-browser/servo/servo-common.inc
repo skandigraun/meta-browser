@@ -10,8 +10,7 @@ include servo-crates.inc
 
 SRC_URI += "git://git@github.com/servo/servo.git;branch=main;protocol=https \
             git://git@github.com/servo/media;branch=main;protocol=https;name=media;destsuffix=media \
-            git://git@github.com/servo/stylo.git;branch=2024-04-16;protocol=https;name=stylo;destsuffix=stylo \
-            git://git@github.com/servo/rust-cssparser.git;branch=main;protocol=https;name=cssparser;destsuffix=cssparser \
+            git://git@github.com/servo/stylo.git;branch=2024-05-15;protocol=https;name=stylo;destsuffix=stylo \
             git://git@github.com/servo/webrender.git;branch=0.64;protocol=https;name=webrender;destsuffix=webrender \
             git://git@github.com/servo/webxr;branch=main;name=webxr;destsuffix=webxr;protocol=https \
             git://git@github.com/servo/fontsan.git;branch=main;destsuffix=fontsan;name=fontsan;protocol=https \
@@ -24,13 +23,13 @@ SRC_URI += "git://git@github.com/servo/servo.git;branch=main;protocol=https \
             file://0001-Build-mozangle-with-TARGET_CXXFLAGS.patch;patchdir=${WORKDIR}/cargo_home \
             file://0001-Use-TARGET_CXXFLAGS-to-build-mozjs.patch;patchdir=${WORKDIR}/mozjs"
 
-SRCREV = "5b13604bd8dbbd26275243d2882761b158291647"
+SRCREV = "dc0ba03d6816a3a2f2d9eff55c67af3daf3e96e6"
 
 SRCREV_FORMAT .= "_media"
 SRCREV_media = "45756bef67037ade0f4f0125d579fdc3f3d457c8"
 
 SRCREV_FORMAT .= "_stylo"
-SRCREV_stylo = "ac65c5a27c1b9faf9e7bb5bbcb3a4837a810ef6b"
+SRCREV_stylo = "039959da0beac876128b86fa4b80908d8e55fbaf"
 
 SRCREV_FORMAT .= "_webxr"
 SRCREV_webxr = "88fd368d1cc110db0f6f5000de2e22a14c9423b5"
@@ -46,9 +45,6 @@ SRCREV_wgpu = "d0a5e48aa7e84683114c3870051cc414ae92ac03"
 
 SRCREV_FORMAT .= "_mozjs"
 SRCREV_mozjs = "89121ff072638faee148e418a3eb2c3a2229fde5"
-
-SRCREV_FORMAT .= "_cssparser"
-SRCREV_cssparser = "aaa966d9d6ae70c4b8a62bb5e3a14c068bb7dff0"
 
 SRCREV_FORMAT .= "_webrender"
 SRCREV_webrender = "9d354adf8955b1390dd56db89e6d5a9ea7880391"
