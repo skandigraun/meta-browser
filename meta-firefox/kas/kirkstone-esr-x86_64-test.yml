@@ -8,7 +8,6 @@ header:
 machine: qemux86-64
 
 local_conf_header:
-# use rust version from meta-rust layer
   kirkstone-esr-x86_64: |
     REQUIRED_VERSION_rust = "1.75.0"
     REQUIRED_VERSION_rust-native = "1.75.0"

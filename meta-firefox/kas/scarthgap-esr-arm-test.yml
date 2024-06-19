@@ -12,8 +12,6 @@ repos:
   meta-rpi:
     refspec: "1879cb831f4ea3e532cb5ce9fa0f32be917e8fa3"
 
-# use rust version shipped with poky
-
 local_conf_header:
   scarthgap-esr-arm: |
     REQUIRED_VERSION_rust = "1.75.0"
