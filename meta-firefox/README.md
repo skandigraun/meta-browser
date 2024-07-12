@@ -6,13 +6,13 @@ Current build status:
 
 | Yocto-FF version / Arch | arm (32-bit) | aarch64 | x86_64 | risc-v |
 | ----------------------- | ------------ | ------- | ------ | ------ |
-| Dunfell - 115.12.0esr   | ![dunfell-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-arm-v115.12.0esr.yml/badge.svg)     | ![dunfell-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-aarch64-v115.12.0esr.yml/badge.svg)     | ![dunfell-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-x86_64-v115.12.0esr.yml/badge.svg) | - |
-| Kirkstone - 115.12.0esr | ![kirkstone-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v115.12.0esr.yml/badge.svg) | ![kirkstone-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v115.12.0esr.yml/badge.svg) | ![kirkstone-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v115.12.0esr.yml/badge.svg) | - |
-| Kirkstone - 127.0.2     | ![kirkstone-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v127.0.2.yml/badge.svg)  | ![kirkstone-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v127.0.2.yml/badge.svg)  | ![kirkstone-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v127.0.2.yml/badge.svg) | - |
-| Scarthgap - 115.12.0esr | ![scarthgap-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v115.12.0esr.yml/badge.svg) | ![scarthgap-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v115.12.0esr.yml/badge.svg) | ![scarthgap-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v115.12.0esr.yml/badge.svg) | ![scarthgap-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v115.12.0esr.yml/badge.svg) |
-| Scarthgap - 127.0.2     | ![scarthgap-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v127.0.2.yml/badge.svg)  | ![scarthgap-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v127.0.2.yml/badge.svg)  | ![scarthgap-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v127.0.2.yml/badge.svg) | ![scarthgap-riscv-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v127.0.2.yml/badge.svg) |
-| Styhead - 115.12.0esr   | ![styhead-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-arm-v115.12.0esr.yml/badge.svg)     | ![styhead-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-aarch64-v115.12.0esr.yml/badge.svg)     | ![styhead-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-x86_64-v115.12.0esr.yml/badge.svg) | ![styhead-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-riscv-v115.12.0esr.yml/badge.svg) |
-| Styhead - 127.0.2       | ![styhead-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-arm-v127.0.2.yml/badge.svg)      | ![styhead-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-aarch64-v127.0.2.yml/badge.svg)      | ![styhead-86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-x86_64-v127.0.2.yml/badge.svg) | ![styhead-riscv-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-riscv-v127.0.2.yml/badge.svg) |
+| Dunfell - 115.13.0esr   | ![dunfell-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-arm-v115.13.0esr.yml/badge.svg)     | ![dunfell-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-aarch64-v115.13.0esr.yml/badge.svg)     | ![dunfell-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-x86_64-v115.13.0esr.yml/badge.svg) | - |
+| Kirkstone - 115.13.0esr | ![kirkstone-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v115.13.0esr.yml/badge.svg) | ![kirkstone-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v115.13.0esr.yml/badge.svg) | ![kirkstone-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v115.13.0esr.yml/badge.svg) | - |
+| Kirkstone - 128.0     | ![kirkstone-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v128.0.yml/badge.svg)  | ![kirkstone-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v128.0.yml/badge.svg)  | ![kirkstone-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v128.0.yml/badge.svg) | - |
+| Scarthgap - 115.13.0esr | ![scarthgap-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v115.13.0esr.yml/badge.svg) | ![scarthgap-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v115.13.0esr.yml/badge.svg) | ![scarthgap-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v115.13.0esr.yml/badge.svg) | ![scarthgap-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v115.13.0esr.yml/badge.svg) |
+| Scarthgap - 128.0     | ![scarthgap-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v128.0.yml/badge.svg)  | ![scarthgap-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v128.0.yml/badge.svg)  | ![scarthgap-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v128.0.yml/badge.svg) | ![scarthgap-riscv-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v128.0.yml/badge.svg) |
+| Styhead - 115.13.0esr   | ![styhead-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-arm-v115.13.0esr.yml/badge.svg)     | ![styhead-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-aarch64-v115.13.0esr.yml/badge.svg)     | ![styhead-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-x86_64-v115.13.0esr.yml/badge.svg) | ![styhead-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-riscv-v115.13.0esr.yml/badge.svg) |
+| Styhead - 128.0       | ![styhead-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-arm-v128.0.yml/badge.svg)      | ![styhead-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-aarch64-v128.0.yml/badge.svg)      | ![styhead-86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-x86_64-v128.0.yml/badge.svg) | ![styhead-riscv-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/styhead-riscv-v128.0.yml/badge.svg) |
 
 OpenEmbedded/Yocto BSP layer for Firefox Browser
 ================================================
@@ -172,39 +172,39 @@ Note: the dependency column refers to the `destsuffix` used in the recipes.
 
 | Firefox version | Dependency | Used commit | Source / Comment |
 | --------------- | ---------- | -------------- | ---------------- |
-| 115.12.0esr | application-services | 86c84c217036c12283d19368867323a66bf35883 | This involves a collection of crates developed by Mozilla. These are specified in the top level Cargo.toml, by explicit hash. (interrupt-support, sql-support, sync15, tabs, viaduct, webext-storage) |
-| 115.12.0esr | packed-simd | e588ceb568878e1a3156ea9ce551d5b63ef0cdc4 | Specified in top level Cargo.toml, by explicit hash. |
-| 115.12.0esr | d3d12-rs | b940b1d71ab7083ae80eec697872672dc1f2bd32 | This commit is required explicitly by `third_party/rust/wgpu-hal/Cargo.toml`. |
-| 115.12.0esr | neqo | 80db3a01f3273c7e742ba560fa99246fc8b30c4f | This commit corresponds to version 0.6.4, which is required by `netwerk/socket/neqo_glue/Cargo.toml` |
-| 115.12.0esr | mp4parse | cf8b0e04de9c60f38f7f057f9f29c74d19336d0c | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 115.12.0esr | wgpu | f71a1bc736fde37509262ca03e91d8f56a13aeb5 | This commit is required explicitly by `gfx/wgpu_bindings/Cargo.toml` |
-| 115.12.0esr | naga | b99d58ea435090e561377949f428bce2c18451bb | This commit is required explicitly by `third_party/rust/wgpu-hal/Cargo.toml` |
-| 115.12.0esr | uniffi-rs | bc7ff8977bf38d0fdd1a458810b14f434d4dc4de | This commit corresponds to version 0.23.0, which is specified by the top level Cargo.toml |
-| 115.12.0esr | audioipc | 0b51291d2483a17dce3e300c7784b369e02bee73 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 115.12.0esr | wpf-gpu-raster | 5ab6fe33d00021325ee920b3c10526dc8301cf46 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 115.12.0esr | warp | 4af45fae95bc98b0eba1ef0db17e1dac471bb23d | This commit is required explicitly by the top level Cargo.toml |
-| 115.12.0esr | cubeb-pulse | cf48897be5cbe147d051ebbbe1eaf5fd8fb6bbc9 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 115.12.0esr | midir | 519e651241e867af3391db08f9ae6400bc023e18 | This commit is required explicitly by the top level Cargo.toml |
-| 115.12.0esr | cubeb-coreaudio | 93b5c01a131f65c83c11aeb317f4583405c5eb79 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
-| 115.12.0esr | aa-stroke | 07d3c25322518f294300e96246e09b95e118555d | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
-| 115.12.0esr | jsparagus | 64ba08e24749616de2344112f226d1ef4ba893ae | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`. |
-| 127.0.2 | application-services | e0563d725f852f617878ecc13a03cdf50c85cd5a | This involves a collection of crates developed by Mozilla. These are specified in the top level Cargo.toml, by explicit hash. (interrupt-support, sql-support, sync15, tabs, viaduct, webext-storage, suggest, relevancy) |
-| 127.0.2 | cose-rust | 43c22248d136c8b38fe42ea709d08da6355cf04b | This commit is required explicitly by the top level Cargo.toml |
-| 127.0.2 | mp4parse | a138e40ec1c603615873e524b5b22e11c0ec4820 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 127.0.2 | neqo | 343df5cc0d02e0b0953de4a0a390ae8980d89081 | This commit corresponds to v0.7.7, which is required by `netwerk/socket/neqo_glue/Cargo.toml` |
-| 127.0.2 | wgpu | d5d683d3c491ec8cd2f5cdb43ac61e526cb7c231 | This commit is required explicitly by `gfx/wgpu_bindings/Cargo.toml` |
-| 127.0.2 | audioipc | 409e11f8de6288e9ddfe269654523735302e59e6 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 127.0.2 | wpf-gpu-raster | 99979da091fd58fba8477e7fcdf5ec0727102916 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 127.0.2 | warp | 9d081461ae1167eb321585ce424f4fef6cf0092b | This commit is required explicitly by the top level Cargo.toml |
-| 127.0.2 | cubeb-pulse | 8ff972c8e2ec1782ff262ac4071c0415e69b1367 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
-| 127.0.2 | cubeb-coreaudio | 4ca174cf83ebe32b3198478c2211d69678845bc7 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
-| 127.0.2 | midir | 85156e360a37d851734118104619f86bd18e94c6 | This commit is required explicitly by the top level Cargo.toml |
-| 127.0.2 | aa-stroke | d94278ed9c7020f50232689a26d1277eb0eb74d2 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
-| 127.0.2 | jsparagus | 61f399c53a641ebd3077c1f39f054f6d396a633c | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`.|
-| 127.0.2 | mio | 9a2ef335c366044ffe73b1c4acabe50a1daefe05 | This commit is required explicitly by the top level Cargo.toml |
-| 127.0.2 | unicode-bidi | ca612daf1c08c53abe07327cb3e6ef6e0a760f0c | Specified in top level Cargo.toml, by explicit hash. |
-| 127.0.2 | gpu-descriptor | 7b71a4e47c81903ad75e2c53deb5ab1310f6ff4d | Specified in top level Cargo.toml, by explicit hash. |
-| 127.0.2 | any-all-workaround | 7fb1b7034c9f172aade21ee1c8554e8d8a48af80 | Specified in top level Cargo.toml, by explicit hash. |
+| 115.13.0esr | application-services | 86c84c217036c12283d19368867323a66bf35883 | This involves a collection of crates developed by Mozilla. These are specified in the top level Cargo.toml, by explicit hash. (interrupt-support, sql-support, sync15, tabs, viaduct, webext-storage) |
+| 115.13.0esr | packed-simd | e588ceb568878e1a3156ea9ce551d5b63ef0cdc4 | Specified in top level Cargo.toml, by explicit hash. |
+| 115.13.0esr | d3d12-rs | b940b1d71ab7083ae80eec697872672dc1f2bd32 | This commit is required explicitly by `third_party/rust/wgpu-hal/Cargo.toml`. |
+| 115.13.0esr | neqo | 80db3a01f3273c7e742ba560fa99246fc8b30c4f | This commit corresponds to version 0.6.4, which is required by `netwerk/socket/neqo_glue/Cargo.toml` |
+| 115.13.0esr | mp4parse | cf8b0e04de9c60f38f7f057f9f29c74d19336d0c | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 115.13.0esr | wgpu | f71a1bc736fde37509262ca03e91d8f56a13aeb5 | This commit is required explicitly by `gfx/wgpu_bindings/Cargo.toml` |
+| 115.13.0esr | naga | b99d58ea435090e561377949f428bce2c18451bb | This commit is required explicitly by `third_party/rust/wgpu-hal/Cargo.toml` |
+| 115.13.0esr | uniffi-rs | bc7ff8977bf38d0fdd1a458810b14f434d4dc4de | This commit corresponds to version 0.23.0, which is specified by the top level Cargo.toml |
+| 115.13.0esr | audioipc | 0b51291d2483a17dce3e300c7784b369e02bee73 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 115.13.0esr | wpf-gpu-raster | 5ab6fe33d00021325ee920b3c10526dc8301cf46 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 115.13.0esr | warp | 4af45fae95bc98b0eba1ef0db17e1dac471bb23d | This commit is required explicitly by the top level Cargo.toml |
+| 115.13.0esr | cubeb-pulse | cf48897be5cbe147d051ebbbe1eaf5fd8fb6bbc9 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 115.13.0esr | midir | 519e651241e867af3391db08f9ae6400bc023e18 | This commit is required explicitly by the top level Cargo.toml |
+| 115.13.0esr | cubeb-coreaudio | 93b5c01a131f65c83c11aeb317f4583405c5eb79 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
+| 115.13.0esr | aa-stroke | 07d3c25322518f294300e96246e09b95e118555d | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
+| 115.13.0esr | jsparagus | 64ba08e24749616de2344112f226d1ef4ba893ae | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`. |
+| 128.0 | application-services | 7c275b9088557abcbc8f3c2834f9aaa9064ca5e4 | This involves a collection of crates developed by Mozilla. These are specified in the top level Cargo.toml, by explicit hash. (interrupt-support, sql-support, sync15, tabs, viaduct, webext-storage, suggest, relevancy) |
+| 128.0 | cose-rust | 43c22248d136c8b38fe42ea709d08da6355cf04b | This commit is required explicitly by the top level Cargo.toml |
+| 128.0 | mp4parse | a138e40ec1c603615873e524b5b22e11c0ec4820 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 128.0 | neqo | 121fe683ae4b39a5b694f671abfd397cbd9b4322 | This commit corresponds to v0.7.9, which is required by `netwerk/socket/neqo_glue/Cargo.toml` |
+| 128.0 | wgpu | c7458638d14921c7562e4197ddeefa17be413587 | This commit is required explicitly by `gfx/wgpu_bindings/Cargo.toml` |
+| 128.0 | audioipc | 3495905752a4263827f5d43737f9ca3ed0243ce0 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 128.0 | wpf-gpu-raster | 99979da091fd58fba8477e7fcdf5ec0727102916 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 128.0 | warp | 9d081461ae1167eb321585ce424f4fef6cf0092b | This commit is required explicitly by the top level Cargo.toml |
+| 128.0 | cubeb-pulse | 8678dcab1c287de79c4c184ccc2e065bc62b70e2 | This commit is required explicitly by `toolkit/library/rust/shared/Cargo.toml` |
+| 128.0 | cubeb-coreaudio | 8bce3b333a920999055397a397e59c2b81a93b9a | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
+| 128.0 | midir | 85156e360a37d851734118104619f86bd18e94c6 | This commit is required explicitly by the top level Cargo.toml |
+| 128.0 | aa-stroke | d94278ed9c7020f50232689a26d1277eb0eb74d2 | Required explicitly by `./toolkit/library/rust/shared/Cargo.toml`. |
+| 128.0 | jsparagus | 61f399c53a641ebd3077c1f39f054f6d396a633c | Required explicitly by `js/src/frontend/smoosh/Cargo.toml`.|
+| 128.0 | mio | 9a2ef335c366044ffe73b1c4acabe50a1daefe05 | This commit is required explicitly by the top level Cargo.toml |
+| 128.0 | unicode-bidi | ca612daf1c08c53abe07327cb3e6ef6e0a760f0c | Specified in top level Cargo.toml, by explicit hash. |
+| 128.0 | gpu-descriptor | 7b71a4e47c81903ad75e2c53deb5ab1310f6ff4d | Specified in top level Cargo.toml, by explicit hash. |
+| 128.0 | any-all-workaround | 7fb1b7034c9f172aade21ee1c8554e8d8a48af80 | Specified in top level Cargo.toml, by explicit hash. |
 | common | chardetng | 3484d3e3ebdc8931493aa5df4d7ee9360a90e76b | This commit is required explicitly by the top level Cargo.toml |
 | common | chardetng_c | ed8a4c6f900a90d4dbc1d64b856e61490a1c3570 | This commit is required explicitly by the top level Cargo.toml |
 | common | coremidi | fc68464b5445caf111e41f643a2e69ccce0b4f83 | This commit is required explicitly by the top level Cargo.toml |
