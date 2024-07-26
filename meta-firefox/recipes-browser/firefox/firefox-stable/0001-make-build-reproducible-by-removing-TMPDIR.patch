@@ -1,0 +1,69 @@
+From d92df4744d379a44e49a2130e882f0c45e3371a2 Mon Sep 17 00:00:00 2001
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+Date: Wed, 24 Jul 2024 21:07:56 +0200
+Subject: [PATCH] make build reproducible by removing TMPDIR
+
+1. The patched html file contains compiler configuration that can be looked up
+somewhere in the compiled firefox, however it refers to TMPDIR at many
+places (include path, lib path, etc).
+
+After looking into it, changing these variables seem to be a disproportionally
+big patch, so instead just remove the thing.
+
+2. The patched mozjemalloc.cpp contained full path to the source file (due to the
+`__FILE__` macro), which was changed to the source file name only, without the
+Yocto TMPDIR element.
+
+Upstream-Status: Inappropriate [OE-specific]
+---
+ toolkit/content/buildconfig.html | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/toolkit/content/buildconfig.html b/toolkit/content/buildconfig.html
+index 9c7ada2..a5ec4d0 100644
+--- a/toolkit/content/buildconfig.html
++++ b/toolkit/content/buildconfig.html
+@@ -44,25 +44,25 @@
+             <th>Compiler flags</th>
+           </tr>
+           <tr>
+-            <td>@CC@</td>
++            <td>Removed for reproducability. Look it up in Yocto build logs.</td>
+             <td>@CC_VERSION@</td>
+-            <td>@CFLAGS@</td>
++            <td>Removed for reproducability. Look it up in Yocto build logs.</td>
+           </tr>
+           <tr>
+-            <td>@CXX@</td>
++            <td>Removed for reproducability. Look it up in Yocto build logs.</td>
+             <td>@CC_VERSION@</td>
+-            <td>@CXXFLAGS@</td>
++            <td>Removed for reproducability. Look it up in Yocto build logs.</td>
+           </tr>
+           <tr>
+-            <td>@RUSTC@</td>
++            <td>Removed for reproducability. Look it up in Yocto build logs.</td>
+             <td>@RUSTC_VERSION@</td>
+-            <td>@RUSTFLAGS@</td>
++            <td>Removed for reproducability. Look it up in Yocto build logs.</td>
+           </tr>
+         </tbody>
+       </table>
+       #endif
+       <h2>Configure options</h2>
+-      <p>@MOZ_CONFIGURE_OPTIONS@</p>
++      <p>Removed for reproducability. Look it up in Yocto build logs.</p>
+       #ifdef ANDROID
+       <h2>Package name</h2>
+       <p>@ANDROID_PACKAGE_NAME@</p>
+--- a/memory/build/mozjemalloc.cpp
++++ b/memory/build/mozjemalloc.cpp
+@@ -1768,7 +1768,7 @@ static inline void pages_decommit(void* aAddr, size_t aSize) {
+     // memory at this point, so avoid the use of printf.
+     const char out_of_mappings[] =
+         "[unhandlable oom] Failed to mmap, likely no more mappings "
+-        "available " __FILE__ " : " MOZ_STRINGIFY(__LINE__);
++        "available memory/build/mozjemalloc.cpp : " MOZ_STRINGIFY(__LINE__);
+     if (errno == ENOMEM) {
+ #  ifndef ANDROID
+       fputs(out_of_mappings, stderr);
