@@ -107,7 +107,6 @@ SRC_URI += "${@bb.utils.contains('PACKAGECONFIG', 'forbid-multiple-compositors',
             file://fixes/0001-Enable-to-suppress-multiple-compositors.patch \
            ', '', d)}"
 
-
 TOOLCHAIN:pn-firefox = "clang"
 AS = "${CC}"
 
