@@ -11,7 +11,7 @@ SRC_URI += "git://github.com/hsivonen/packed_simd.git;protocol=https;branch=0_3_
             git://github.com/glandium/warp.git;protocol=https;branch=pemfile;name=warp;destsuffix=warp \
             git://github.com/gfx-rs/naga;protocol=https;branch=master;name=naga;destsuffix=naga \
             git://github.com/mozilla/uniffi-rs.git;protocol=https;branch=main;name=uniffi-rs;destsuffix=uniffi-rs \
-            git://github.com/mozilla/audioipc;protocol=https;branch=master;name=audioipc;destsuffix=audioipc \
+            git://github.com/mozilla/application-services.git;protocol=https;branch=main;name=application-services;destsuffix=application-services \
             file://debian-hacks/Work-around-bz-1775202-to-fix-FTBFS-on-ppc64el.patch \
             file://0004-fix-compilation-with-clang18.patch \
             file://0005-non-constant-expression-cannot-be-narrowed-from.patch"
@@ -66,3 +66,6 @@ SRCREV_aa-stroke = "07d3c25322518f294300e96246e09b95e118555d"
 
 SRCREV_FORMAT .= "_jsparagus"
 SRCREV_jsparagus = "64ba08e24749616de2344112f226d1ef4ba893ae"
+
+SRCREV_FORMAT .= "_mapped_hyph"
+SRCREV_mapped_hyph = "c7651a0cffff41996ad13c44f689bd9cd2192c01"
