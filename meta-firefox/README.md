@@ -6,7 +6,6 @@ Current build status:
 
 | Yocto-FF version / Arch | arm (32-bit) | aarch64 | x86_64 | risc-v |
 | ----------------------- | ------------ | ------- | ------ | ------ |
-| Dunfell - 115.15.0esr   | ![dunfell-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-arm-v115.15.0esr.yml/badge.svg)     | ![dunfell-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-aarch64-v115.15.0esr.yml/badge.svg)     | ![dunfell-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/dunfell-x86_64-v115.15.0esr.yml/badge.svg) | - |
 | Kirkstone - 115.15.0esr | ![kirkstone-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v115.15.0esr.yml/badge.svg) | ![kirkstone-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v115.15.0esr.yml/badge.svg) | ![kirkstone-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v115.15.0esr.yml/badge.svg) | - |
 | Kirkstone - 130.0.1     | ![kirkstone-arm-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-arm-v130.0.1.yml/badge.svg)  | ![kirkstone-aarch64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-aarch64-v130.0.1.yml/badge.svg)  | ![kirkstone-x86_64-latest](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/kirkstone-x86_64-v130.0.1.yml/badge.svg) | - |
 | Scarthgap - 115.15.0esr | ![scarthgap-arm-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-arm-v115.15.0esr.yml/badge.svg) | ![scarthgap-aarch64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-aarch64-v115.15.0esr.yml/badge.svg) | ![scarthgap-x86_64-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-x86_64-v115.15.0esr.yml/badge.svg) | ![scarthgap-riscv-esr](https://github.com/OldManYellsAtCloud/meta-browser/actions/workflows/scarthgap-riscv-v115.15.0esr.yml/badge.svg) |
@@ -22,14 +21,11 @@ and/or Yocto.
 
 ##Dependencies
 
-This layer depends on poky, meta-oe, and meta-rust (only for Kirkstone and Dunfell). To see the tested revision/release
+This layer depends on poky, meta-oe, and meta-rust (only for Kirkstone). To see the tested revision/release
 combinations, see the contents of the `kas` folder - that contains all the branch/revision information used for
 testing.
 
 Note: Make sure to add `RUST_PANIC_STRATEGY = "abort"` to local.conf before compiling Rust.
-
-Note: The 115esr series is the last available for Dunfell, as it is EOL now. Dunfell support is to be removed once Firefox ends this series
-(last version, 115.15.0esr is expected in 09/2024). 
 
 Note: Firefox requires at least Rust 1.76 starting from version 127. meta-rust layer provides 1.78, however this layer is not compatible with Scarthgap (nor newer).
 Due to this, Rust 1.76 recipes are also shipped as part of this layer (adapted from Scarthgap). 
@@ -38,7 +34,6 @@ Unfortunately this needs some caution when it comes to the Rust version used, an
 
 | Yocto/FF version | ESR | Latest |
 | ---------------- | ---- | ----- |
-| Dunfell | Rust 1.72 from meta-rust | N/A |
 | Kirkstone | Rust 1.75 from meta-rust | Rust 1.78 from meta-rust (along with adding rust from oe-core to BBMASK) |
 | Scarthgap | Rust 1.75 from oe-core | Rust 1.76 shipped with this layer (along with adding rust oe-core to BBMASK) |
 | Styhead | Rust 1.75 from oe-core | Rust 1.76 shipped with this layer (along with adding rust oe-core to BBMASK) |
