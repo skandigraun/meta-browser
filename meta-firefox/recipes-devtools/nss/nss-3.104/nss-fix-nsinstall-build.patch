@@ -39,6 +39,6 @@ index 08dfbc2..e97fb5f 100644
 +LDFLAGS =
 +# CFLAGS =
 +
- ifeq (,$(filter-out OS2 WIN%,$(OS_TARGET)))
+ ifeq (,$(filter-out WIN%,$(OS_TARGET)))
  PROGRAM		=
  TARGETS		=

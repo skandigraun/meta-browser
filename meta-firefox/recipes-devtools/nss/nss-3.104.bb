@@ -8,7 +8,7 @@ v3 certificates, and other security standards."
 HOMEPAGE = "http://www.mozilla.org/projects/security/pki/nss/"
 SECTION = "libs"
 
-DEPENDS = "sqlite3 nspr-4.35 zlib nss-3.103-native"
+DEPENDS = "sqlite3 nspr-4.35 zlib nss-3.104-native"
 DEPENDS:class-native = "sqlite3-native nspr-4.35-native zlib-native"
 
 CONFLICTS = "nss"
@@ -22,12 +22,12 @@ LIC_FILES_CHKSUM = "file://nss/COPYING;md5=3b1e88e1b9c0b5a4b2881d46cce06a18 \
 
 VERSION_DIR = "${@d.getVar('BP').upper().replace('-', '_').replace('.', '_') + '_RTM'}"
 
-PV = "3.103"
+PV = "3.104"
 
 NSS_BASEDIR = '${@ "${WORKDIR}" if d.getVar("UNPACKDIR") == None \
                  else d.getVar("UNPACKDIR")}'
 
-SRC_URI = "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_103_RTM/src/nss-3.103.tar.gz \
+SRC_URI = "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_104_RTM/src/nss-3.104.tar.gz \
            file://nss.pc.in \
            file://0001-nss-fix-support-cross-compiling.patch \
            file://nss-no-rpath-for-cross-compiling.patch \
@@ -40,14 +40,14 @@ SRC_URI = "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_103_RTM/src/n
            file://nss-fix-nsinstall-build.patch \
            file://0001-freebl-add-a-configure-option-to-disable-ARM-HW-cryp.patch \
            "
-SRC_URI[sha256sum] = "7b4ab657f772dc7520c46e8d481940b292dcfc6a4c90150a7c26672384cee962"
+SRC_URI[sha256sum] = "e2763223622d1e76b98a43030873856f248af0a41b03b2fa2ca06a91bc50ac8e"
 
 UPSTREAM_CHECK_URI = "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_Releases"
 UPSTREAM_CHECK_REGEX = "NSS_(?P<pver>.+)_release_notes"
 
 inherit siteinfo
 
-S = "${WORKDIR}/nss-3.103"
+S = "${WORKDIR}/nss-3.104"
 
 TD = "${S}/tentative-dist"
 TDS = "${S}/tentative-dist-staging"
@@ -253,7 +253,7 @@ do_install:append:class-target() {
     install -m 0644 ${NSS_BASEDIR}/system-pkcs11.txt ${D}${sysconfdir}/pki/nssdb/pkcs11.txt
 }
 
-PACKAGE_WRITE_DEPS += "nss-3.103-native"
+PACKAGE_WRITE_DEPS += "nss-3.104-native"
 
 pkg_postinst:${PN} () {
     for I in $D${libdir}/lib*.chk; do
