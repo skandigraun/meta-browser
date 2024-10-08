@@ -21,9 +21,12 @@ and/or Yocto.
 
 ##Dependencies
 
-This layer depends on poky, meta-oe and meta-rust (only for Kirkstone). To see the tested revision/release
+This layer depends on poky, meta-oe, meta-clang and meta-rust (only for Kirkstone). To see the tested revision/release
 combinations, see the contents of the `kas` folder - that contains all the branch/revision information used for
 testing.
+
+`meta-clang` layer requires `libstdc++` to be installed on the build machine - make sure to install it, in case it is missing 
+(e.g. on Debian based systems install `libstdc++-dev` or on Fedora install `libstdc++-devel`)
 
 Note: Make sure to add `RUST_PANIC_STRATEGY = "abort"` to local.conf before compiling Rust.
 
