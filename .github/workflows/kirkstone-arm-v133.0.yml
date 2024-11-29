@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-kirkstone-arm-latest:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, acer]
     environment: ff-build-env
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +17,9 @@ jobs:
           path: workspace/kirkstone/meta-browser
           ref: ${{ github.ref }}
       - run: |
+         if [ -e ~/test-images/kirkstone-arm-latest.wic.bz2 ]; then
+           exit 0
+         fi
          cd workspace/kirkstone
          kas checkout --update ./meta-browser/meta-firefox/kas/kirkstone-latest-arm-test.yml
          kas shell ./meta-browser/meta-firefox/kas/kirkstone-latest-arm-test.yml -c "bitbake -c clean firefox firefox-test-image \
@@ -42,7 +45,5 @@ jobs:
                   firefox-l10n-mk           firefox-l10n-son    firefox-l10n-en-ca  firefox-l10n-he     firefox-l10n-mr \
                   firefox-l10n-sq"
          kas build ./meta-browser/meta-firefox/kas/kirkstone-latest-arm-test.yml
-         if [ ! -e ~/test-images/kirkstone-arm-latest.wic.bz2 ]; then
-           mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3-*.rootfs.wic.bz2 ~/test-images/kirkstone-arm-latest.wic.bz2
-           mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3-*.rootfs.wic.bmap ~/test-images/kirkstone-arm-latest.wic.bmap
-         fi
+         mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3-*.rootfs.wic.bz2 ~/test-images/kirkstone-arm-latest.wic.bz2
+         mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3-*.rootfs.wic.bmap ~/test-images/kirkstone-arm-latest.wic.bmap

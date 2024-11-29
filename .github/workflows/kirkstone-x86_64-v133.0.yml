@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-kirkstone-x86_64-latest:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, acer]
     environment: ff-build-env
     steps:
       - uses: actions/checkout@v4

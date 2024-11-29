@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-scarthgap-arm-latest:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, acer]
     environment: ff-build-env
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +17,9 @@ jobs:
           path: workspace/scarthgap/meta-browser
           ref: ${{ github.ref }}
       - run: |
+         if [ -e ~/test-images/scarthgap-arm-latest.wic.bz2 ]; then
+           exit 0
+         fi
          cd workspace/scarthgap
          kas checkout --update ./meta-browser/meta-firefox/kas/scarthgap-latest-arm-test.yml
          kas shell ./meta-browser/meta-firefox/kas/scarthgap-latest-arm-test.yml -c "bitbake -c clean firefox firefox-test-image \
@@ -43,7 +46,5 @@ jobs:
                   firefox-l10n-sq"
          kas shell ./meta-browser/meta-firefox/kas/scarthgap-latest-arm-test.yml -c "bitbake -c clean rust-native cargo cargo-native libstd-rs rust-llvm-native"
          kas build ./meta-browser/meta-firefox/kas/scarthgap-latest-arm-test.yml
-         if [ ! -e ~/test-images/scarthgap-arm-latest.wic.bz2 ]; then
-           mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3.rootfs-*.wic.bz2 ~/test-images/scarthgap-arm-latest.wic.bz2
-           mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3.rootfs-*.wic.bmap ~/test-images/scarthgap-arm-latest.wic.bmap
-         fi
+         mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3.rootfs-*.wic.bz2 ~/test-images/scarthgap-arm-latest.wic.bz2
+         mv build/tmp/deploy/images/raspberrypi3/firefox-test-image-raspberrypi3.rootfs-*.wic.bmap ~/test-images/scarthgap-arm-latest.wic.bmap
