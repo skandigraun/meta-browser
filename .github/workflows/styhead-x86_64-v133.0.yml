@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-styhead-x86_64-latest:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, desktop]
     environment: ff-build-env
     steps:
       - uses: actions/checkout@v4
