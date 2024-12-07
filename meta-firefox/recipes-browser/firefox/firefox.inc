@@ -1,4 +1,4 @@
-DESCRIPTION ?= "Browser made by mozilla"
+DESCRIPTION ?= "Browser made by Mozilla"
 
 DEPENDS:append = "pulseaudio cbindgen-native clang-native \
             nodejs-native python-zstandard gtk+3 \
